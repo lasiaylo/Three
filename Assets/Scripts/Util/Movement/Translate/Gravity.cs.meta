@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 29c1d54aa6764c348faa758da7adcc26
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - GravityTraits: {fileID: 11400000, guid: 15e26e9b44a83db45aa36f9341a7c5a5, type: 2}
+  - JumpTraits: {fileID: 11400000, guid: f5d39ac2a84d7fc40b371de9657a4350, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
