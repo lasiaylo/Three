@@ -1,2 +1,2 @@
 # Three
-The third project by Lasia, Nicole, Same
+The third project by Lasia, Nicole, Sam
