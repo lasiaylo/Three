@@ -1,8 +1,11 @@
+using System;
+using Movement.Translate;
 using UnityEngine;
-using Util.Movement;
 
-namespace Translate.Rotation {
+namespace Movement.Rotation {
 	public class RotationTicker : Modifier<Quaternion> {
+		protected override Type ComponentType => typeof(MovementMod);
+
 		public void Awake() {
 			val = transform.rotation;
 		}

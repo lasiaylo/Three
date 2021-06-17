@@ -1,8 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using Util.Movement;
 
-namespace Util.Movement.Translate {
-	public class SimpleJump : Mod<Vector3> {
-		private readonly JumpTraits _traits = default;
+namespace Movement.Translate {
+	public class SimpleJump : MovementMod {
+		[SerializeField]
+		private JumpTraits _traits = default;
 		private Phase _phase;
 
 		public void Jump() {
@@ -18,7 +22,8 @@ namespace Util.Movement.Translate {
 			return direction;
 		}
 	}
-
+	
+	[Serializable]
 	public struct JumpTraits {
 		public float Speed;
 	}

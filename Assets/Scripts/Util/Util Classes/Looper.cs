@@ -6,7 +6,7 @@ namespace Util.Util_Classes {
 	public class Looper {
 		public float Max;
 		public float Min;
-		[SerializeField] private float _Val;
+		[SerializeField] private float _Val = default;
 
 		public Looper(float min, float max) {
 			Min = min;

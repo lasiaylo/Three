@@ -1,8 +1,11 @@
-﻿namespace FSM.Movement {
+﻿using System;
+
+namespace FSM.Movement {
+	[Serializable]
 	public struct MovementTraits {
-		public float Acceleration;
-		public float Deceleration;
-		public float MaxSpeed;
+		public float acceleration;
+		public float deceleration;
+		public float maxSpeed;
 	}
 
 	public interface IHasMovementTraits {

@@ -1,21 +1,35 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Movement.Translate;
 using UnityEngine;
 using Util.Attributes;
 using Util.Tickers;
 
-namespace Util.Movement {
+namespace Movement {
 	/// <summary>
 	///     Maintains a value that is modified through a list of Mods
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-	public class Modifier<T> : Ticker {
-		[Expandable] public List<Mod<T>> mods = new List<Mod<T>>();
+	[RequireComponent(typeof(TickerList))]
+	public abstract class Modifier<T> : Ticker, ISerializationCallbackReceiver {
+		[Expandable] public List<Mod<T>> mods;
 		[SerializeField] protected T val;
-
+		protected abstract Type ComponentType { get; }
+		
+		public void OnEnable() {}
+		
 		public override void Tick() {
-			foreach (var mod in mods)
+			if (!enabled) return;
+			foreach (Mod<T> mod in mods)
 				if (mod.enabled)
 					val = mod.Modify(val);
 		}
+
+		public void OnBeforeSerialize() {
+			mods = GetComponents(ComponentType).Cast<Mod<T>>().ToList();
+		}
+
+		public void OnAfterDeserialize() { }
 	}
 }

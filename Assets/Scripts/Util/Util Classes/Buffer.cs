@@ -25,5 +25,9 @@ namespace Util.Util_Classes {
 		public void Clear() {
 			Value = default;
 		}
+
+		public void OnMove() {
+			
+		}
 	}
 }

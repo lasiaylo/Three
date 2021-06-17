@@ -7,7 +7,7 @@ using Util.Extensions;
 
 namespace Util {
 	public class Tags : MonoBehaviour, ISerializationCallbackReceiver {
-		[SerializeField] private List<Tag> tags;
+		[SerializeField] private List<Tag> tags = default;
 		private Dictionary<Type, Dictionary<string, bool>> _tagDict;
 
 		public void OnAfterDeserialize() {

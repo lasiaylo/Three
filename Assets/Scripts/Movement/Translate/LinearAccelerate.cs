@@ -2,7 +2,7 @@
 using FSM.Movement;
 using UnityEngine;
 
-namespace Util.Movement.Translate {
+namespace Movement.Translate {
 	/// <summary>
 	///     Linearly accelerates owner towards a target direction.
 	/// </summary>
@@ -10,14 +10,13 @@ namespace Util.Movement.Translate {
 	///     Adapted from Celeste's Running Implementation
 	///     https://github.com/NoelFB/Celeste/blob/master/Source/Player/Player.cs#L2879
 	/// </remarks>
-	[Serializable]
-	public class LinearAccelerate : Mod<Vector3> {
+	public class LinearAccelerate : MovementMod {
+		public MovementTraits traits;
 		public Vector3 InputDirection { private get; set; }
-		public MovementTraits Traits { private get; set; }
 
 		protected Vector3 Target {
 			get {
-				float maxSpeed = Traits.MaxSpeed;
+				float maxSpeed = traits.maxSpeed;
 				return Vector3.Scale(InputDirection, new Vector3(maxSpeed, maxSpeed, maxSpeed));
 			}
 		}
@@ -28,8 +27,8 @@ namespace Util.Movement.Translate {
 
 		protected float Speed(Vector3 val) {
 			return InputDirection.IsZero() && Vector3.Angle(val.GetXz(), InputDirection.GetXz()) <= 90
-				? Traits.Acceleration
-				: Traits.Deceleration;
+				? traits.deceleration
+				: traits.acceleration;
 		}
 	}
 }

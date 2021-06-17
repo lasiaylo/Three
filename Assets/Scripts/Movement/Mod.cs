@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Util.Movement {
+namespace Movement {
 	public abstract class Mod<T> : MonoBehaviour {
 		/// <summary>
 		///     Left in so enable checkbox appears in Inspector

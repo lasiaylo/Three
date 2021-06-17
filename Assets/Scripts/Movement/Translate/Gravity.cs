@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Util.Movement.Translate {
+namespace Movement.Translate {
 	/// <summary>
 	///     Handles Gravity for GameObjects
 	/// </summary>
@@ -10,8 +10,7 @@ namespace Util.Movement.Translate {
 	///     Adapted from Celeste's Gravity Implementation:
 	///     https://github.com/NoelFB/Celeste/blob/master/Source/Player/Player.cs#L2927
 	/// </remarks>
-	[Serializable]
-	public class Gravity : Mod<Vector3> {
+	public class Gravity : MovementMod {
 		public static float GroundFallSpeed = 1;
 		public static float GroundGravity = 1;
 		public UnityEvent<Direction> arcEvent;

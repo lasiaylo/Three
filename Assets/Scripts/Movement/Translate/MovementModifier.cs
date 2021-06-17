@@ -1,6 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using Util.Movement;
 
-namespace Util.Movement.Translate {
+namespace Movement.Translate {
 	/// <summary>
 	///     Handles GameObject Movement.
 	/// </summary>
@@ -9,8 +13,9 @@ namespace Util.Movement.Translate {
 	///     https://github.com/DapperDino/Dapper-Tools/tree/master/Runtime/Components/Movements
 	/// </remarks>
 	[RequireComponent(typeof(CharacterController))]
-	public class MovementTicker : Modifier<Vector3> {
+	public class MovementModifier : Modifier<Vector3> {
 		private CharacterController _controller;
+		protected override Type ComponentType => typeof(MovementMod);
 
 		public Vector3 Value {
 			get => enabled ? val : Vector3.zero;
