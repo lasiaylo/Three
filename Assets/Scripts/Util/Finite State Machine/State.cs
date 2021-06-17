@@ -15,8 +15,8 @@ namespace Util.Finite_State_Machine {
 		public State parentState;
 		[SerializeField] private State currentSubState;
 
-		[SerializeField] private List<State> substateList = new();
-		private readonly Dictionary<Type, State> _substateDict = new();
+		[SerializeField] private List<State> substateList = new List<State>();
+		private readonly Dictionary<Type, State> _substateDict = new Dictionary<Type, State>();
 
 		public void OnBeforeSerialize() { }
 

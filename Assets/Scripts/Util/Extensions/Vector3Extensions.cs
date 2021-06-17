@@ -47,15 +47,15 @@ public static class Vector3Extensions {
 	#region Get Plane
 
 	public static Vector2 GetXy(this Vector3 val) {
-		return new(val.x, val.y);
+		return new Vector2(val.x, val.y);
 	}
 
 	public static Vector2 GetXz(this Vector3 val) {
-		return new(val.x, val.z);
+		return new Vector2(val.x, val.z);
 	}
 
 	public static Vector2 GetYz(this Vector3 val) {
-		return new(val.y, val.z);
+		return new Vector2(val.y, val.z);
 	}
 
 	#endregion

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TexDrawLib {
 	public class ObjectPool<T> where T : new() {
-		private readonly Stack<T> m_Stack = new();
+		private readonly Stack<T> m_Stack = new Stack<T>();
 
 		public T Get() {
 			T element;

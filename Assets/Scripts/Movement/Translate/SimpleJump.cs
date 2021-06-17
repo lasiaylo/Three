@@ -2,8 +2,8 @@
 
 namespace Util.Movement.Translate {
 	public class SimpleJump : Mod<Vector3> {
-		private Phase _phase;
 		private readonly JumpTraits _traits = default;
+		private Phase _phase;
 
 		public void Jump() {
 			_phase = Phase.Start;

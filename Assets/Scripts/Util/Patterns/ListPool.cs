@@ -4,10 +4,10 @@ namespace TexDrawLib {
 	//Main Class Stack Manager
 	public static class ListPool<T> {
 		// Object pool to avoid allocations.
-		private static readonly ObjectPool<List<T>> s_ListPool = new();
+		private static readonly ObjectPool<List<T>> Pool = new ObjectPool<List<T>>();
 
 		public static List<T> Get() {
-			return s_ListPool.Get();
+			return Pool.Get();
 		}
 
 		public static void Release(List<T> toRelease) {
@@ -18,22 +18,22 @@ namespace TexDrawLib {
 				}
 
 			toRelease.Clear();
-			s_ListPool.Release(toRelease);
+			Pool.Release(toRelease);
 		}
 
 		//Advanced purposes only
 		public static void ReleaseNoFlush(List<T> toRelease) {
 			toRelease.Clear();
-			s_ListPool.Release(toRelease);
+			Pool.Release(toRelease);
 		}
 	}
 
 	internal static class ObjPool<T> where T : class, IFlushable, new() {
 		// Object pool to avoid allocations.
-		private static readonly ObjectPool<T> s_ObjPool = new();
+		private static readonly ObjectPool<T> Pool = new ObjectPool<T>();
 
 		public static T Get() {
-			T obj = s_ObjPool.Get();
+			T obj = Pool.Get();
 			obj.SetFlushed(false);
 			return obj;
 		}
@@ -42,7 +42,7 @@ namespace TexDrawLib {
 			if (toRelease.GetFlushed())
 				return;
 			toRelease.SetFlushed(true);
-			s_ObjPool.Release(toRelease);
+			Pool.Release(toRelease);
 		}
 	}
 

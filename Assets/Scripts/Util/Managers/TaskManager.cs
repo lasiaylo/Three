@@ -102,7 +102,7 @@ public class Task : IFlushable {
 
 	//Task with ID functionality, prevent duplicate Coroutines being run
 
-	private static readonly Dictionary<string, Task> idStack = new();
+	private static readonly Dictionary<string, Task> idStack = new Dictionary<string, Task>();
 
 	/// Determine whether this task is used once, or false if not
 	/// If set to false, then it's your responsibility to call Flush() if this class is no longer use.

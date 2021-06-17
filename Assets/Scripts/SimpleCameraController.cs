@@ -18,7 +18,7 @@ namespace UnityTemplateProjects {
 		[Header("Rotation Settings")]
 		[Tooltip("X = Change in mouse position.\nY = Multiplicative factor for camera rotation.")]
 		public AnimationCurve mouseSensitivityCurve =
-			new(new Keyframe(0f, 0.5f, 0f, 5f), new Keyframe(1f, 2.5f, 0f, 0f));
+			new AnimationCurve(new Keyframe(0f, 0.5f, 0f, 5f), new Keyframe(1f, 2.5f, 0f, 0f));
 
 		[Tooltip("Time it takes to interpolate camera rotation 99% of the way to the target.")] [Range(0.001f, 1f)]
 		public float rotationLerpTime = 0.01f;
@@ -26,9 +26,9 @@ namespace UnityTemplateProjects {
 		[Tooltip("Whether or not to invert our Y axis for mouse input to rotation.")]
 		public bool invertY;
 
-		private readonly CameraState m_InterpolatingCameraState = new();
+		private readonly CameraState m_InterpolatingCameraState = new CameraState();
 
-		private readonly CameraState m_TargetCameraState = new();
+		private readonly CameraState m_TargetCameraState = new CameraState();
 
 		private void Update() {
 			Vector3 translation = Vector3.zero;

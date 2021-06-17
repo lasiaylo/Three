@@ -9,7 +9,7 @@ namespace Util.Movement {
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	public class Modifier<T> : Ticker {
-		[Expandable] public List<Mod<T>> mods = new();
+		[Expandable] public List<Mod<T>> mods = new List<Mod<T>>();
 		[SerializeField] protected T val;
 
 		public override void Tick() {

@@ -56,7 +56,7 @@ namespace Util {
 
 	// Add to this whenever you create a new tag type.
 	public static class TagType {
-		public static readonly Dictionary<string, Type> Types = new() {
+		public static readonly Dictionary<string, Type> Types = new Dictionary<string, Type>() {
 			{Key<General>(), Val<General>()},
 			{Key<FloorMaterial>(), Val<FloorMaterial>()},
 		};

@@ -27,15 +27,15 @@ public static class Vector2Extensions {
 	#region To Vector3
 
 	public static Vector3 ToXYPlane(this Vector2 val) {
-		return new(val.x, val.y, 0);
+		return new Vector3(val.x, val.y, 0);
 	}
 
 	public static Vector3 ToXZPlane(this Vector2 val) {
-		return new(val.x, 0, val.y);
+		return new Vector3(val.x, 0, val.y);
 	}
 
 	public static Vector3 ToYZPlane(this Vector2 val) {
-		return new(0, val.x, val.y);
+		return new Vector3(0, val.x, val.y);
 	}
 
 	#endregion

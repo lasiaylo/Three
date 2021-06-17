@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Util.Managers {
 	public class ComponentCacheManager : SingletonBehaviour<ComponentCacheManager> {
 		private readonly Dictionary<Component, Dictionary<Type, dynamic>> _cache =
-			new();
+			new Dictionary<Component, Dictionary<Type, dynamic>>();
 
 		public T GetOnlyComponent<T>(Component component) {
 			Type type = typeof(T);
