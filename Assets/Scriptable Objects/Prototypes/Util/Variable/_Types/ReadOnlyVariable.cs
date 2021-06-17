@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 
 public abstract class ReadOnlyVariable<T> : ScriptableObject {
-    [SerializeField] protected T _val = default;
+	[SerializeField] protected T _val;
 
-    public T Val {
-        get => _val;
-    }
+	public T Val => _val;
 }

@@ -2,41 +2,41 @@
 using UnityEngine;
 
 public static class Vector2Extensions {
-    private static readonly float _tolerance = 0.001f;
+	private static readonly float _tolerance = 0.001f;
 
-    #region Is Zero
+	#region Is Zero
 
-    public static bool IsZero(this Vector2 val) {
-        return Math.Abs(val.magnitude) < _tolerance;
-    }
+	public static bool IsZero(this Vector2 val) {
+		return Math.Abs(val.magnitude) < _tolerance;
+	}
 
-    #endregion
+	#endregion
 
-    #region Move Towards One Axis
+	#region Move Towards One Axis
 
-    public static Vector2 MoveTowardsX(this Vector2 val, float target, float maxDistanceDelta) {
-        return Vector2.MoveTowards(val, new Vector2(target, val.y), maxDistanceDelta);
-    }
+	public static Vector2 MoveTowardsX(this Vector2 val, float target, float maxDistanceDelta) {
+		return Vector2.MoveTowards(val, new Vector2(target, val.y), maxDistanceDelta);
+	}
 
-    public static Vector2 MoveTowardsY(this Vector2 val, float target, float maxDistanceDelta) {
-        return Vector2.MoveTowards(val, new Vector2(val.x, target), maxDistanceDelta);
-    }
+	public static Vector2 MoveTowardsY(this Vector2 val, float target, float maxDistanceDelta) {
+		return Vector2.MoveTowards(val, new Vector2(val.x, target), maxDistanceDelta);
+	}
 
-    #endregion
+	#endregion
 
-    #region To Vector3
+	#region To Vector3
 
-    public static Vector3 ToXYPlane(this Vector2 val) {
-        return new Vector3(val.x, val.y, 0);
-    }
+	public static Vector3 ToXYPlane(this Vector2 val) {
+		return new(val.x, val.y, 0);
+	}
 
-    public static Vector3 ToXZPlane(this Vector2 val) {
-        return new Vector3(val.x, 0, val.y);
-    }
+	public static Vector3 ToXZPlane(this Vector2 val) {
+		return new(val.x, 0, val.y);
+	}
 
-    public static Vector3 ToYZPlane(this Vector2 val) {
-        return new Vector3(0, val.x, val.y);
-    }
+	public static Vector3 ToYZPlane(this Vector2 val) {
+		return new(0, val.x, val.y);
+	}
 
-    #endregion
+	#endregion
 }

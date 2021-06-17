@@ -1,38 +1,46 @@
 ﻿using System;
+using System.Collections;
+using UnityEngine;
 
-namespace Util.Util_Classes
-{
-    [Serializable]
-    public class Timer {
-        public float duration;
-        public float remaining;
-        public float speed;
+namespace Util.Util_Classes {
+	[Serializable]
+	public class Timer {
+		public delegate void OnEnd();
 
-        public Timer(float duration) {
-            this.duration = remaining = duration;
-        }
+		[SerializeField] private float duration;
+		private OnEnd _onEnd;
+		private float _remaining;
+		public Task Task;
 
-        public void Tick(float deltaTime) {
-            if (IsEnd()) return;
-            remaining -= deltaTime * speed;
-            CheckForTimerEnd();
-        }
+		public Timer(float duration, OnEnd onEnd) {
+			this.duration = _remaining = duration;
+			_onEnd = onEnd;
+		}
 
-        public void Reset() {
-            remaining = duration;
-        }
+		public void Start() {
+			Task = Task ?? Task.Get(Tick());
+			Task.Unpause();
+		}
 
-        public void End() {
-            remaining = 0f;
-        }
+		private IEnumerator Tick() {
+			while (!IsEnd()) {
+				_remaining = Mathf.Clamp(_remaining - Time.deltaTime, 0.0f, duration);
+				yield break;
+			}
 
-        public bool IsEnd() {
-            return remaining <= 0f;
-        }
+			_onEnd();
+		}
 
-        private void CheckForTimerEnd() {
-            if (remaining > 0f) return;
-            remaining = 0f;
-        }
-    }
+		public void Reset() {
+			_remaining = duration;
+		}
+
+		public void End() {
+			_remaining = 0f;
+		}
+
+		public bool IsEnd() {
+			return _remaining <= 0f;
+		}
+	}
 }
