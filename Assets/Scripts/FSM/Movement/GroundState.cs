@@ -1,12 +1,13 @@
 using System;
-using FSM.Movement;
+using UnityEngine;
 
-namespace Util.Finite_State_Machine {
-	public class GroundState : State, IHasMovementTraits {
-		public MovementTraits MovementTraits { get; }
+namespace FSM.Movement {
+	public class GroundState : MovementState, IHasJumpTraits {
+		[SerializeField] private JumpTraits jumpTraits;
+		public JumpTraits JumpTraits => jumpTraits;
 
 		protected override Type CheckTransitions() {
-			throw new NotImplementedException();
+			return Controller.isGrounded ? null : typeof(GroundState);
 		}
 	}
 }

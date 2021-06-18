@@ -16,7 +16,7 @@ namespace Movement.Translate {
 		public UnityEvent<Direction> arcEvent;
 		private bool _arcStart;
 		private CharacterController _controller;
-		public GravityTraits Traits;
+		public GravityTraits traits;
 
 		public void Awake() {
 			_controller = GetComponent<CharacterController>();
@@ -26,16 +26,16 @@ namespace Movement.Translate {
 			float fallSpeed = -GroundFallSpeed;
 			float delta = GroundGravity;
 			if (!_controller.isGrounded) {
-				fallSpeed = -Traits.MaxFallSpeed;
-				float arcMult = ShouldArc(val) ? Traits.ArcMult : 1;
-				delta = Traits.Gravity * arcMult;
+				fallSpeed = -traits.maxFallSpeed;
+				float arcMult = ShouldArc(val) ? traits.arcMult : 1;
+				delta = traits.gravity * arcMult;
 			}
 
 			return val.MoveTowardsY(fallSpeed, delta * Time.deltaTime);
 		}
 
 		private bool ShouldArc(Vector3 direction) {
-			bool shouldArc = !_controller.isGrounded && Math.Abs(direction.y) < Traits.ArcThreshold;
+			bool shouldArc = !_controller.isGrounded && Math.Abs(direction.y) < traits.arcThreshold;
 			if (shouldArc && direction.y > 0 && _arcStart) {
 				arcEvent.Invoke(direction.y > 0 ? Direction.UP : Direction.DOWN);
 				_arcStart = false;
@@ -47,11 +47,12 @@ namespace Movement.Translate {
 		}
 	}
 
+	[Serializable]
 	public struct GravityTraits {
-		public float ArcThreshold;
-		public float ArcMult;
-		public float Gravity;
-		public float MaxFallSpeed;
+		public float arcThreshold;
+		public float arcMult;
+		public float gravity;
+		public float maxFallSpeed;
 	}
 
 	public enum Direction {

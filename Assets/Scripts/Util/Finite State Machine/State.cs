@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,33 +14,26 @@ namespace Util.Finite_State_Machine {
 		public UnityEvent<State> onExit;
 
 		public State parentState;
-		[SerializeField] private State currentSubState;
+		[SerializeField] protected State currentSubState;
 
-		[SerializeField] private List<State> substateList = new List<State>();
+		[SerializeField] protected List<State> substateList = new List<State>();
 		private readonly Dictionary<Type, State> _substateDict = new Dictionary<Type, State>();
-
-		public void OnBeforeSerialize() { }
-
-		public void OnAfterDeserialize() {
-			// load contents from the List into the HashSet
-			_substateDict.Clear();
-			foreach (State state in substateList) {
-				if (state is null) continue;
-				state.parentState = this;
-				_substateDict[state.GetType()] = state;
-			}
-		}
 
 		[CanBeNull] // Return null to not transition
 		protected abstract Type CheckTransitions();
 
+		[CanBeNull] // Called to figure out which substate to land on
+		protected virtual Type CheckSubTransitions() {
+			return substateList.FirstOrDefault()?.GetType();
+		}
+
 		protected virtual void EnterImpl() { }
-
 		protected virtual void TickImpl() { }
-
 		protected virtual void ExitImpl() { }
 
+
 		private void Enter() {
+			SubTransition();
 			EnterImpl();
 			onEnter.Invoke(this);
 		}
@@ -57,11 +51,20 @@ namespace Util.Finite_State_Machine {
 		}
 
 		private void Transition() {
-			Type stateType = CheckTransitions();
-			if (!(stateType is null)) parentState.SetState(stateType);
+			Type type = CheckTransitions();
+			if (type is null) return;
+
+			parentState.SetSubstate(type);
 		}
 
-		private void SetState(Type stateType) {
+		private void SubTransition() {
+			Type type = CheckSubTransitions();
+			if (type is null) return;
+			
+			SetSubstate(type);
+		}
+		
+		private void SetSubstate(Type stateType) {
 			if (_substateDict.ContainsKey(stateType)) {
 				currentSubState.Exit();
 				currentSubState = _substateDict[stateType];
@@ -71,6 +74,18 @@ namespace Util.Finite_State_Machine {
 			else {
 				string typeName = stateType.FullName;
 				Debug.LogError("State " + typeName + " isn't in this machine");
+			}
+		}
+
+		public void OnBeforeSerialize() { }
+
+		public void OnAfterDeserialize() {
+			// load contents from the List into the HashSet
+			_substateDict.Clear();
+			foreach (State state in substateList) {
+				if (state is null) continue;
+				state.parentState = this;
+				_substateDict[state.GetType()] = state;
 			}
 		}
 	}

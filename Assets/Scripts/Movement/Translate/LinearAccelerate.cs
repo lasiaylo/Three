@@ -1,6 +1,9 @@
 ﻿using System;
 using FSM.Movement;
+using Scriptable_Objects.Prototypes.Util.Variable.Default;
+using ScriptableObjects.Prototypes.Variable;
 using UnityEngine;
+using Util.Finite_State_Machine;
 
 namespace Movement.Translate {
 	/// <summary>
@@ -12,12 +15,12 @@ namespace Movement.Translate {
 	/// </remarks>
 	public class LinearAccelerate : MovementMod {
 		public MovementTraits traits;
-		public Vector3 InputDirection { private get; set; }
+		[SerializeField] protected DefaultNormalVector2 inputDirection = default;
 
 		protected Vector3 Target {
 			get {
 				float maxSpeed = traits.maxSpeed;
-				return Vector3.Scale(InputDirection, new Vector3(maxSpeed, maxSpeed, maxSpeed));
+				return Vector3.Scale(inputDirection.Val, new Vector3(maxSpeed, maxSpeed, maxSpeed));
 			}
 		}
 
@@ -26,9 +29,13 @@ namespace Movement.Translate {
 		}
 
 		protected float Speed(Vector3 val) {
-			return InputDirection.IsZero() && Vector3.Angle(val.GetXz(), InputDirection.GetXz()) <= 90
+			return inputDirection.Val.IsZero() && Vector3.Angle(val.GetXz(), inputDirection.Val) <= 90
 				? traits.deceleration
 				: traits.acceleration;
+		}
+
+		public void SetMovementTraits(State state) {
+			if (state is IHasMovementTraits hasMovement) traits = hasMovement.MovementTraits;
 		}
 	}
 }

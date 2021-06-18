@@ -1,30 +1,23 @@
-﻿using System;
+﻿using FSM.Movement;
+using ScriptableObjects.Prototypes.Variable;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using Util.Movement;
+using Util.Finite_State_Machine;
 
 namespace Movement.Translate {
 	public class SimpleJump : MovementMod {
-		[SerializeField]
-		private JumpTraits _traits = default;
-		private Phase _phase;
-
-		public void Jump() {
-			_phase = Phase.Start;
-		}
+		[SerializeField] private JumpTraits traits = default;
+		[SerializeField] private DefaultPhase jumpPhase = default; 
 
 		public override Vector3 Modify(Vector3 direction) {
-			if (_phase == Phase.Start) {
-				_phase = Phase.End;
-				return new Vector3(direction.x, _traits.Speed, direction.z);
-			}
+			if (!traits.canJump || jumpPhase.Val == Phase.End) return direction;
+			jumpPhase.Val = Phase.End;
+			return new Vector3(direction.x, traits.speed, direction.z);
+		}
 
-			return direction;
+		public void SetCanJump(State state) {
+			if (state is IHasJumpTraits hasJump) traits = hasJump.JumpTraits;
 		}
 	}
 	
-	[Serializable]
-	public struct JumpTraits {
-		public float Speed;
-	}
+
 }
