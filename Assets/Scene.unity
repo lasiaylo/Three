@@ -219,36 +219,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &658959115
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 658959116}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &658959116
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 658959115}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 869020421}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &733384706
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,11 +326,10 @@ GameObject:
   - component: {fileID: 869020417}
   - component: {fileID: 869020413}
   - component: {fileID: 869020424}
-  - component: {fileID: 869020422}
   - component: {fileID: 869020415}
+  - component: {fileID: 869020423}
   - component: {fileID: 869020414}
   - component: {fileID: 869020416}
-  - component: {fileID: 869020423}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -442,10 +411,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 014e5c3a48a64085b5f8271bb7e090b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  traits:
-    speed: 5
-    canJump: 0
-  jumpPhase: {fileID: 11400000, guid: 2e9509ff2d2604eaca1b14601cc52e34, type: 2}
+  traits: {fileID: 11400000, guid: 5dea8c243385248f3a7f3fb51328f27b, type: 2}
+  jumpInput: {fileID: 11400000, guid: 2e9509ff2d2604eaca1b14601cc52e34, type: 2}
 --- !u!114 &869020415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,9 +426,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mods:
+  - {fileID: 869020423}
   - {fileID: 869020414}
   - {fileID: 869020416}
-  - {fileID: 869020423}
   val: {x: 0, y: 0, z: 0}
 --- !u!114 &869020416
 MonoBehaviour:
@@ -475,10 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 762380df79464478930bc4bcac26473a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  traits:
-    acceleration: 50
-    deceleration: 35
-    maxSpeed: 10
+  traits: {fileID: 11400000, guid: 31331be5843564a8cb0e48ae83f7cf57, type: 2}
   inputDirection: {fileID: 11400000, guid: f9623253e0b3a45d7bbda42896d9a013, type: 2}
 --- !u!143 &869020417
 CharacterController:
@@ -569,28 +533,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 869020412}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0068655014, y: 2.44, z: 1.8506508}
+  m_LocalPosition: {x: -0.0068655014, y: 16.89, z: 1.8506508}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1037530771}
-  - {fileID: 658959116}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &869020422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 869020412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: effa6b6aa9304242920cc7314c54a7b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Tickers:
-  - {fileID: 869020415}
 --- !u!114 &869020423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -672,31 +621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onEnter:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 869020416}
-        m_TargetAssemblyTypeName: Movement.Translate.LinearAccelerate, Assembly-CSharp
-        m_MethodName: SetMovementTraits
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 869020412}
-        m_TargetAssemblyTypeName: Movement.Translate.LinearAccelerate, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onTick:
     m_PersistentCalls:
       m_Calls: []
@@ -706,10 +631,15 @@ MonoBehaviour:
   parentState: {fileID: 1037530774}
   currentSubState: {fileID: 0}
   substateList: []
+  moveTraitRef: {fileID: 11400000, guid: 31331be5843564a8cb0e48ae83f7cf57, type: 2}
+  jumpTraitRef: {fileID: 11400000, guid: 5dea8c243385248f3a7f3fb51328f27b, type: 2}
   movementTraits:
-    acceleration: 0
-    deceleration: 0
-    maxSpeed: 0
+    acceleration: 10
+    deceleration: 20
+    maxSpeed: 10
+  jumpTraits:
+    speed: 0
+    canJump: 0
 --- !u!114 &1037530773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -724,19 +654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onEnter:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 869020414}
-        m_TargetAssemblyTypeName: Movement.Translate.SimpleJump, Assembly-CSharp
-        m_MethodName: SetCanJump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onTick:
     m_PersistentCalls:
       m_Calls: []
@@ -746,12 +664,14 @@ MonoBehaviour:
   parentState: {fileID: 1037530774}
   currentSubState: {fileID: 0}
   substateList: []
+  moveTraitRef: {fileID: 11400000, guid: 31331be5843564a8cb0e48ae83f7cf57, type: 2}
+  jumpTraitRef: {fileID: 11400000, guid: 5dea8c243385248f3a7f3fb51328f27b, type: 2}
   movementTraits:
-    acceleration: 0
-    deceleration: 0
-    maxSpeed: 0
+    acceleration: 10
+    deceleration: 20
+    maxSpeed: 10
   jumpTraits:
-    speed: 5
+    speed: 7
     canJump: 1
 --- !u!114 &1037530774
 MonoBehaviour:

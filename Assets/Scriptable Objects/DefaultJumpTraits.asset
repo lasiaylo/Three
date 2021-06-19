@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: DefaultJumpTraits
   m_EditorClassIdentifier: 
   _Val:
-    speed: 0
+    speed: 5
     canJump: 0
   DefaultValue:
-    speed: 0
+    speed: 5
     canJump: 0

@@ -14,7 +14,7 @@ namespace Util.Finite_State_Machine {
 		public UnityEvent<State> onExit;
 
 		public State parentState;
-		[SerializeField, CanBeNull] protected State currentSubState;
+		[SerializeField, CanBeNull] protected State currentSubstate;
 
 		[SerializeField] protected List<State> substateList = new List<State>();
 		private readonly Dictionary<Type, State> _substateDict = new Dictionary<Type, State>();
@@ -43,7 +43,7 @@ namespace Util.Finite_State_Machine {
 			Transition();
 			TickImpl();
 			onTick.Invoke(this);
-			currentSubState?.Tick();
+			currentSubstate?.Tick();
 		}
 
 		private void Exit() {
@@ -67,10 +67,10 @@ namespace Util.Finite_State_Machine {
 		
 		private void SetSubstate(Type stateType) {
 			if (_substateDict.ContainsKey(stateType)) {
-				currentSubState.Exit();
-				currentSubState = _substateDict[stateType];
-				currentSubState.Enter();
-				currentSubState.Tick(); // should we tick here? revisit later
+				currentSubstate.Exit();
+				currentSubstate = _substateDict[stateType];
+				currentSubstate.Enter();
+				currentSubstate.Tick(); // should we tick here? revisit later
 			}
 			else {
 				string typeName = stateType.FullName;
