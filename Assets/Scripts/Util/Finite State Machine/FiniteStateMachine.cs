@@ -22,6 +22,5 @@ namespace Util.Finite_State_Machine {
 			substateList.Remove(this);
 		}
 
-		public void OnAfterDeserialize() { }
 	}
 }
