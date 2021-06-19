@@ -9,8 +9,8 @@ namespace Movement.Rotation {
 			val = transform.rotation;
 		}
 
-		public override void Tick() {
-			base.Tick();
+		public override void Update() {
+			base.Update();
 			transform.rotation = val;
 		}
 	}

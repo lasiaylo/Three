@@ -4,7 +4,8 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - traits: {fileID: 11400000, guid: ca728dddcd87a7f4f996e3c209fe33f3, type: 2}
+  - traits: {fileID: 11400000, guid: 31331be5843564a8cb0e48ae83f7cf57, type: 2}
+  - inputDirection: {fileID: 11400000, guid: f9623253e0b3a45d7bbda42896d9a013, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -23,8 +23,8 @@ namespace Movement.Translate {
 			_controller = GetComponent<CharacterController>();
 		}
 
-		public override void Tick() {
-			base.Tick();
+		public override void Update() {
+			base.Update();
 			_controller.Move(val * Time.deltaTime);
 		}
 	}
