@@ -533,7 +533,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 869020412}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0068655014, y: 16.89, z: 1.8506508}
+  m_LocalPosition: {x: -0.0068655014, y: 4.48, z: 1.8506508}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1037530771}
@@ -629,7 +629,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   parentState: {fileID: 1037530774}
-  currentSubState: {fileID: 0}
+  currentSubstate: {fileID: 0}
   substateList: []
   moveTraitRef: {fileID: 11400000, guid: 31331be5843564a8cb0e48ae83f7cf57, type: 2}
   jumpTraitRef: {fileID: 11400000, guid: 5dea8c243385248f3a7f3fb51328f27b, type: 2}
@@ -662,7 +662,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   parentState: {fileID: 1037530774}
-  currentSubState: {fileID: 0}
+  currentSubstate: {fileID: 0}
   substateList: []
   moveTraitRef: {fileID: 11400000, guid: 31331be5843564a8cb0e48ae83f7cf57, type: 2}
   jumpTraitRef: {fileID: 11400000, guid: 5dea8c243385248f3a7f3fb51328f27b, type: 2}
@@ -695,7 +695,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   parentState: {fileID: 0}
-  currentSubState: {fileID: 0}
+  currentSubstate: {fileID: 0}
   substateList:
   - {fileID: 1037530773}
   - {fileID: 1037530772}

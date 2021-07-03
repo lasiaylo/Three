@@ -16,11 +16,10 @@ namespace Util.Finite_State_Machine {
 		protected override Type CheckTransitions() {
 			return null;
 		}
-		
-		public void OnBeforeSerialize() {
+
+		public override void OnBeforeSerialize() {
 			substateList = GetComponents<State>().ToList();
 			substateList.Remove(this);
 		}
-
 	}
 }

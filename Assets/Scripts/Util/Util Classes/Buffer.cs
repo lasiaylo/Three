@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Util.Util_Classes {
@@ -9,25 +11,37 @@ namespace Util.Util_Classes {
 	public class Buffer<T> {
 		// Will probably have to expand to a queue of actions
 		[SerializeField] private Timer timer;
+		private T Val;
 
 		public Buffer() {
 			timer = new Timer(0, Clear);
 		}
 
-		public T Value { get; private set; }
+		public T SetOrConsume(T val) {
+			if (!IsCleared()) return Consume();
+			Set(val);
+			return default;
+		}
+
 
 		public void Set(T val) {
 			timer.Reset();
-			Value = val;
+			Val = val;
 			timer.Start();
 		}
 
 		public void Clear() {
-			Value = default;
+			Val = default;
+		}
+		
+		public T Consume() {
+			T val = Val;
+			Clear();
+			return val;
 		}
 
-		public void OnMove() {
-			
+		public bool IsCleared() {
+			return Val is null;
 		}
 	}
 }

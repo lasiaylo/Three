@@ -78,7 +78,7 @@ namespace Util.Finite_State_Machine {
 			}
 		}
 
-		public void OnBeforeSerialize() { }
+		public virtual void OnBeforeSerialize() { }
 
 		public void OnAfterDeserialize() {
 			// load contents from the List into the HashSet
