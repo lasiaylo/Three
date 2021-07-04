@@ -1,18 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+using Scriptable_Objects.Prototypes.Traits;
+using Scriptable_Objects.Prototypes.Util.Variable.Default;
 using UnityEngine;
 
-public class PlayerTraits : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+// Centralizes all traits about the player
+// This is bad code :)
+public class PlayerTraits : MonoBehaviour {
+	public DefaultMovementTraits movement;
+	public DefaultJumpTraits jump;
+	public DefaultDirection direction;
 }

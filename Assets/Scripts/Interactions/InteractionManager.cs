@@ -3,11 +3,6 @@ using UnityEngine;
 using Util.Patterns;
 
 namespace Interactions {
-	public enum ColliderType {
-		INTERACT,
-		LOOK_AT,
-	}
-
 	public class InteractionManager : Singleton<InteractionManager> {
 		[SerializeField] private DefaultDirection direction;
 		[SerializeField] private Interactable target;
