@@ -1,4 +1,5 @@
 ﻿using System;
+using Scriptable_Objects.Prototypes.Util.Variable.Default;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -53,10 +54,5 @@ namespace Movement.Translate {
 		public float arcMult;
 		public float gravity;
 		public float maxFallSpeed;
-	}
-
-	public enum Direction {
-		UP,
-		DOWN,
 	}
 }

@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Util.Patterns;
 
 namespace Util.Managers {
-	public class ComponentCacheManager : SingletonBehaviour<ComponentCacheManager> {
+	public class ComponentCacheManager : Singleton<ComponentCacheManager> {
 		private readonly Dictionary<Component, Dictionary<Type, dynamic>> _cache =
 			new Dictionary<Component, Dictionary<Type, dynamic>>();
 
