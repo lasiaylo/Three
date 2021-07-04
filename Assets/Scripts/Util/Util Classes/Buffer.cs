@@ -11,7 +11,7 @@ namespace Util.Util_Classes {
 	public class Buffer<T> {
 		// Will probably have to expand to a queue of actions
 		[SerializeField] private Timer timer;
-		private T Val;
+		private T _val;
 
 		public Buffer() {
 			timer = new Timer(0, Clear);
@@ -26,22 +26,22 @@ namespace Util.Util_Classes {
 
 		public void Set(T val) {
 			timer.Reset();
-			Val = val;
+			_val = val;
 			timer.Start();
 		}
 
 		public void Clear() {
-			Val = default;
+			_val = default;
 		}
 		
 		public T Consume() {
-			T val = Val;
+			T val = _val;
 			Clear();
 			return val;
 		}
 
 		public bool IsCleared() {
-			return Val is null;
+			return _val is null;
 		}
 	}
 }

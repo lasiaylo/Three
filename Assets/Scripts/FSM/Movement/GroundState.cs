@@ -4,7 +4,7 @@ namespace FSM.Movement {
 	public class GroundState : MovementState {
 
 		protected override Type CheckTransitions() {
-			return controller.isGrounded ? null : typeof(AirState);
+			return Controller.isGrounded ? null : typeof(AirState);
 		}
 	}
 }

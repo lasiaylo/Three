@@ -13,7 +13,7 @@ namespace Interactions {
 		public void OnTriggerExit(Collider other) {
 			SetInteractionTarget(other, null);
 		}
-
+		
 		private void SetInteractionTarget(Component other, Interactable target) {
 			if (other.CompareTag("Player")) {
 				InteractionManager.Instance.Target = target;

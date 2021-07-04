@@ -1,5 +1,5 @@
 ﻿using System;
-using Scriptable_Objects.Prototypes.Util.Variable.Default;
+using Traits;
 using UnityEngine;
 using UnityEngine.Events;
 
