@@ -1,21 +1,24 @@
-using Scriptable_Objects.Prototypes.Util.Variable.Default;
+using JetBrains.Annotations;
 using UnityEngine;
 using Util.Patterns;
 
 namespace Interactions {
 	public class InteractionManager : Singleton<InteractionManager> {
-		[SerializeField] private DefaultDirection direction;
-		[SerializeField] private Interactable target;
-		
-		public Interactable Target {
+		[SerializeField] [CanBeNull] private InteractBehaviour target;
+
+		public InteractBehaviour Target {
 			private get => target;
 			set {
-				target = value;
+				if (value != target) {
+					if (target != null) target.Unfocus();
+					if (value != null) value.Focus();
+					target = value;
+				}
 			}
 		}
 
 		public void Interact() {
-			Target.Interact();
+			Target?.Interact();
 		}
 	}
 }

@@ -23,7 +23,6 @@ namespace Inputs {
 			else {
 				jumpPhase.Val = _jumpBuffer.Consume();
 			}
-			Debug.Log(context.phase);
 			switch (context.phase) {
 				case InputActionPhase.Started:
 					jumpPhase.Val = Phase.Start;

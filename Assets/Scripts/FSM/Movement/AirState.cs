@@ -6,4 +6,4 @@ namespace FSM.Movement {
 			return Controller.isGrounded ? typeof(GroundState) : null;
 		}
 	}
-}	
+}

@@ -13,12 +13,12 @@ namespace Util.Managers {
 			if (_cache.ContainsKey(component)) {
 				if (_cache[component].ContainsKey(type)) return (T) _cache[component][type];
 
-				_cache[component].Add(type, component.GetComponent<T>());
+				_cache[component].Add(type, component.GetComponentInChildren<T>());
 				return _cache[component][type];
 			}
 
-			var componentCache = new Dictionary<Type, dynamic>
-				{{type, component.GetComponent<T>()}};
+			Dictionary<Type, dynamic> componentCache = new Dictionary<Type, dynamic>
+				{{type, component.GetComponentInChildren<T>()}};
 			_cache.Add(component, componentCache);
 			return _cache[component][type];
 		}

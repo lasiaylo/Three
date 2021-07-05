@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b7be3e4cab4805af5c2b3d1c9914b6, type: 3}
   m_Name: PlayerDirection
   m_EditorClassIdentifier: 
-  _Val: 0
-  DefaultValue: 0
+  _Val: 3
+  DefaultValue: 3
