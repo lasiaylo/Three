@@ -1,4 +1,3 @@
-using System;
 using Traits;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,6 +9,8 @@ namespace Interactions {
 		public UnityEvent<bool> observeEvent;
 		private Camera _camera;
 		private bool _isObserved;
+		private Vector3 prevPos;
+		private Direction _prevDirection;
 
 		private bool IsObserved {
 			get => _isObserved;
@@ -28,7 +29,7 @@ namespace Interactions {
 
 		public void OnTriggerEnter(Collider other) {
 			if (!other.CompareTag("Player")) return;
-			IsObserved = IsBeingObservedBy(other);
+			IsObserved = IsObservedBy(other);
 		}
 
 		public void OnTriggerStay(Collider other) {
@@ -39,15 +40,21 @@ namespace Interactions {
 			IsObserved = false;
 		}
 
-		private bool IsBeingObservedBy(Component viewer) {
+		private bool IsObservedBy(Component viewer) {
 			DirectionTrait direction = viewer.GetOnlyComponent<DirectionTrait>();
-			Vector3 viewerPosition = viewer.transform.position;
-			Vector3 myPosition = transform.position;
+			Vector3 viewerPos = viewer.transform.position;
+			if (viewerPos == prevPos && direction.val == _prevDirection) return IsObserved;
+			Vector3 myPos = transform.position;
+			prevPos = viewerPos;
+			_prevDirection = direction.val;
+			Debug.Log("Things fall apart");
+			Debug.Log(direction.val);
+			
 			return direction.val switch {
-				Direction.RIGHT => _camera.WorldToScreenPoint(viewerPosition).x <
-				                   _camera.WorldToScreenPoint(myPosition).x,
-				Direction.LEFT => _camera.WorldToScreenPoint(viewerPosition).x >
-				                  _camera.WorldToScreenPoint(myPosition).x,
+				Direction.RIGHT => _camera.WorldToScreenPoint(viewerPos).x <
+				                   _camera.WorldToScreenPoint(myPos).x,
+				Direction.LEFT => _camera.WorldToScreenPoint(viewerPos).x >
+				                  _camera.WorldToScreenPoint(myPos).x,
 				_ => false,
 			};
 		}

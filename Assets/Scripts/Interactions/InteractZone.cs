@@ -4,7 +4,6 @@ using UnityEngine;
 namespace Interactions {
 	[RequireComponent(typeof(Collider))]
 	public class InteractZone : MonoBehaviour, ISerializationCallbackReceiver {
-		public int priority;
 		public InteractZoneManager zoneManager;
 		[SerializeField] private bool isTriggered;
 
@@ -22,6 +21,10 @@ namespace Interactions {
 
 		public void OnTriggerEnter(Collider other) {
 			SetTrigger(other, true);
+		}
+
+		public void OnTriggerStay(Collider other) {
+			OnTriggerEnter(other);
 		}
 
 		public void OnTriggerExit(Collider other) {

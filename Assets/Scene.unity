@@ -613,6 +613,7 @@ GameObject:
   - component: {fileID: 869020423}
   - component: {fileID: 869020414}
   - component: {fileID: 869020416}
+  - component: {fileID: 869020422}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -659,6 +660,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 869020422}
+        m_TargetAssemblyTypeName: Movement.PlayerDirection, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 56c1e9f8-ee18-49f3-8164-f5f981810f17
     m_ActionName: Movement/Move[/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
@@ -677,6 +690,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1f6edfb5-4ba9-4847-8c03-a596bb8a3b5b
     m_ActionName: Movement/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 772464fb-ae5b-44f1-afbd-9212a9822cf4
+    m_ActionName: Movement/Interact[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -822,6 +839,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &869020422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869020412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283e443f9de3d47448b6887c16cb59fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &869020423
 MonoBehaviour:
   m_ObjectHideFlags: 0
