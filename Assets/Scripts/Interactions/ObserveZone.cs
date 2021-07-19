@@ -6,6 +6,8 @@ using Util.Extensions;
 namespace Interactions {
 	[RequireComponent(typeof(Collider))]
 	public class ObserveZone : MonoBehaviour {
+		public UnityEvent OnObserve;
+		public UnityEvent OnUnobserve;
 		public UnityEvent<bool> observeEvent;
 		private Camera _camera;
 		private bool _isObserved;
@@ -17,6 +19,7 @@ namespace Interactions {
 			set {
 				if (value == _isObserved) return;
 				_isObserved = value;
+				Observe(IsObserved);
 				observeEvent.Invoke(IsObserved);
 			}
 		}
@@ -38,6 +41,14 @@ namespace Interactions {
 
 		public void OnTriggerExit(Collider other) {
 			IsObserved = false;
+		}
+
+		private void Observe(bool isObserved) {
+			if (isObserved) { OnObserve.Invoke();}
+			else {
+				OnUnobserve.Invoke();
+			}
+			
 		}
 
 		private bool IsObservedBy(Component viewer) {
