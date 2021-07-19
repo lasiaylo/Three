@@ -1,4 +1,5 @@
 using Interactions;
+using UnityEngine.InputSystem;
 using Yarn.Unity;
 
 public class DialogueInteract : InteractBehaviour {

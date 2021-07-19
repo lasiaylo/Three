@@ -10,6 +10,11 @@ namespace Inputs {
 		[SerializeField] private DefaultNormalVector2 input = default;
 		[SerializeField] private DefaultPhase jumpPhase = default;
 		[SerializeField] private Buffer<Phase> _jumpBuffer;
+		private PlayerInput _playerInput;
+
+		public void Awake() {
+			_playerInput = GetComponent<PlayerInput>();
+		}
 		
 		public void OnMove(InputAction.CallbackContext context) {
 			input.Val = context.ReadValue<Vector2>();

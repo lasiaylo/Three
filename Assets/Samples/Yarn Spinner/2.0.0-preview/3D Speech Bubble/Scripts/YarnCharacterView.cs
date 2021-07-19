@@ -25,10 +25,12 @@ namespace Yarn.Unity.Example {
 
 		public Canvas canvas;
 		public CanvasScaler canvasScaler;
+		
+		
 
 		[Tooltip(
 			"for best results, set the rectTransform anchors to middle-center, and make sure the rectTransform's pivot Y is set to 0")]
-		public RectTransform dialogueBubbleRect;
+		public RectTransform dialogueBubbleRect, optionsBubbleRect;
 
 		[Tooltip(
 			"margin is 0-1.0 (0.1 means 10% of screen space)... -1 lets dialogue bubbles appear offscreen or get cutoff")]
@@ -153,6 +155,9 @@ namespace Yarn.Unity.Example {
 				// 	dialogueBubbleRect.anchoredPosition = WorldToAnchoredPosition(dialogueBubbleRect,
 				// 		playerCharacter.positionWithOffset, bubbleMargin);
 				// }
+			}
+			if ( optionsBubbleRect.gameObject.activeInHierarchy ) {
+				optionsBubbleRect.anchoredPosition = WorldToAnchoredPosition( optionsBubbleRect, playerCharacter.positionWithOffset, bubbleMargin );
 			}
 		}
 
