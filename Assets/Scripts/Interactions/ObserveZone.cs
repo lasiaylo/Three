@@ -47,8 +47,6 @@ namespace Interactions {
 			Vector3 myPos = transform.position;
 			prevPos = viewerPos;
 			_prevDirection = direction.val;
-			Debug.Log("Things fall apart");
-			Debug.Log(direction.val);
 			
 			return direction.val switch {
 				Direction.RIGHT => _camera.WorldToScreenPoint(viewerPos).x <

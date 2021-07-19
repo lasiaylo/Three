@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Inputs/MovementInput.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Inputs/PlayerInput.inputactions'
 
 using System;
 using System.Collections;
@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class @MovementInput : IInputActionCollection, IDisposable
+public class @PlayerInput : IInputActionCollection, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @MovementInput()
+    public @PlayerInput()
     {
         asset = InputActionAsset.FromJson(@"{
-    ""name"": ""MovementInput"",
+    ""name"": ""PlayerInput"",
     ""maps"": [
         {
             ""name"": ""Movement"",
@@ -168,7 +168,7 @@ public class @MovementInput : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""97f85735-f192-4493-8e8c-517fa546f870"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -240,8 +240,8 @@ public class @MovementInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Movement_Interact;
     public struct MovementActions
     {
-        private @MovementInput m_Wrapper;
-        public MovementActions(@MovementInput wrapper) { m_Wrapper = wrapper; }
+        private @PlayerInput m_Wrapper;
+        public MovementActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Movement_Move;
         public InputAction @Jump => m_Wrapper.m_Movement_Jump;
         public InputAction @Interact => m_Wrapper.m_Movement_Interact;

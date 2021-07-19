@@ -1,5 +1,5 @@
 {
-    "name": "MovementInput",
+    "name": "PlayerInput",
     "maps": [
         {
             "name": "Movement",
@@ -155,7 +155,7 @@
                 {
                     "name": "",
                     "id": "97f85735-f192-4493-8e8c-517fa546f870",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
