@@ -6,8 +6,8 @@ using Util.Extensions;
 namespace Interactions {
 	[RequireComponent(typeof(Collider))]
 	public class ObserveZone : MonoBehaviour {
-		public UnityEvent OnObserve;
-		public UnityEvent OnUnobserve;
+		public UnityEvent onObserve;
+		public UnityEvent onUnobserve;
 		public UnityEvent<bool> observeEvent;
 		private Camera _camera;
 		private bool _isObserved;
@@ -44,9 +44,9 @@ namespace Interactions {
 		}
 
 		private void Observe(bool isObserved) {
-			if (isObserved) { OnObserve.Invoke();}
+			if (isObserved) { onObserve.Invoke();}
 			else {
-				OnUnobserve.Invoke();
+				onUnobserve.Invoke();
 			}
 			
 		}

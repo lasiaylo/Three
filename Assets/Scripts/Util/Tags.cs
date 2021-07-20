@@ -8,39 +8,52 @@ using Util.Extensions;
 namespace Util {
 	public class Tags : MonoBehaviour, ISerializationCallbackReceiver {
 		[SerializeField] private List<Tag> tags = default;
-		private Dictionary<Type, Dictionary<string, bool>> _tagDict;
+		private Dictionary<Type, Dictionary<string, bool>> _tagToSubtagDict;
 
 		public void OnAfterDeserialize() {
-			_tagDict = new Dictionary<Type, Dictionary<string, bool>>();
+			_tagToSubtagDict ??= new Dictionary<Type, Dictionary<string, bool>>();
+			_tagToSubtagDict.Clear();
 			foreach (Tag t in tags) {
-				Type type = TagType.GetType(t.tagType);
+				Type type = TagType.GetType(t.parentTag);
 				if (type == null) continue;
-				if (!_tagDict.ContainsKey(type)) _tagDict.Add(type, new Dictionary<string, bool>());
-				_tagDict[type][t.value] = t.enabled;
+				if (!_tagToSubtagDict.ContainsKey(type)) _tagToSubtagDict.Add(type, new Dictionary<string, bool>());
+				_tagToSubtagDict[type][t.name] = t.enabled;
 			}
 		}
 
 		public void OnBeforeSerialize() { }
 
 		public IEnumerable<string> GetAllStringTags() {
-			return tags
-				.Where(t => t.enabled)
-				.Select(t => t.value);
+			List<string> tagStrings = new List<string>();
+			foreach (Tag t in tags) {
+				if (t.enabled) {
+					tagStrings.Add(t.name);
+				}
+			}
+
+			return tagStrings;
 		}
 
 		public IEnumerable<T> GetTags<T>() where T : Enum {
 			Type tagType = typeof(T);
-			if (_tagDict.TryGetValue(tagType, out var values))
-				return values
-					.Where(val => val.Value)
-					.Select(val => (T) Enum.Parse(tagType, val.Key));
+			if (_tagToSubtagDict.TryGetValue(tagType, out Dictionary<string, bool> subTags)) {
+				List<T> tagList = new List<T>();
+				foreach (string subTag in subTags.Keys) {
+					if (subTags[subTag]) {
+						tagList.Add((T) Enum.Parse(tagType, subTag));
+					}
+				}
+
+				return tagList;
+			}
+
 			Debug.LogErrorFormat("Tags of type {0} not found", tagType);
 			return Enumerable.Empty<T>();
 		}
 
 		public bool HasTag(Enum tagValue) {
 			Type tagType = tagValue.GetType();
-			if (_tagDict.TryGetValue(tagType, out var values))
+			if (_tagToSubtagDict.TryGetValue(tagType, out Dictionary<string, bool> values))
 				if (values.TryGetValue(tagValue.GetName(), out bool enable))
 					return enable;
 			return false;
@@ -49,8 +62,8 @@ namespace Util {
 
 	[Serializable]
 	public struct Tag {
-		public string tagType;
-		public string value;
+		public string parentTag;
+		public string name;
 		public bool enabled;
 	}
 

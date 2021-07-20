@@ -1,13 +1,24 @@
+using System;
 using Interactions;
-using UnityEngine.InputSystem;
+using UnityEngine;
+using Util.Utils;
 using Yarn.Unity;
 
 public class DialogueInteract : InteractBehaviour {
-	public string yarnNode;
+	public Name characterName;
+	private string characterNameString;
+	private string yarnNode;
 	private DialogueRunner _runner;
 
 	public void Awake() {
 		_runner = FindObjectOfType<DialogueRunner>();
+		characterNameString = characterName.ToString();
+		DayManager.Instance.onDayChange.AddListener(OnDayChange);
+	}
+
+	public void OnDayChange(string day) {
+		Debug.Log(day);
+		yarnNode = String.Format("{0}{1}", day, characterNameString);
 	}
 
 	public override void Interact() {

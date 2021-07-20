@@ -42,7 +42,7 @@ namespace Editor {
 						false,
 						ClickHandler,
 						new Tag {
-							tagType = tagType.Key, value = tagVal, enabled = true,
+							parentTag = tagType.Key, name = tagVal, enabled = true,
 						});
 
 				menu.ShowAsContext();
@@ -66,8 +66,8 @@ namespace Editor {
 			list.serializedProperty.arraySize++;
 			list.index = index;
 			SerializedProperty element = list.serializedProperty.GetArrayElementAtIndex(index);
-			element.FindPropertyRelative("tagType").stringValue = tag.tagType;
-			element.FindPropertyRelative("value").stringValue = tag.value;
+			element.FindPropertyRelative("tagType").stringValue = tag.parentTag;
+			element.FindPropertyRelative("value").stringValue = tag.name;
 			element.FindPropertyRelative("enabled").boolValue = true;
 			serializedObject.ApplyModifiedProperties();
 		}
