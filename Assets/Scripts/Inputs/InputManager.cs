@@ -12,10 +12,6 @@ namespace Inputs {
 		[SerializeField] private Buffer<Phase> _jumpBuffer;
 		private PlayerInput _playerInput;
 
-		public void Awake() {
-			_playerInput = GetComponent<PlayerInput>();
-		}
-		
 		public void OnMove(InputAction.CallbackContext context) {
 			input.Val = context.ReadValue<Vector2>();
 		}
@@ -28,6 +24,7 @@ namespace Inputs {
 			else {
 				jumpPhase.Val = _jumpBuffer.Consume();
 			}
+
 			switch (context.phase) {
 				case InputActionPhase.Started:
 					jumpPhase.Val = Phase.Start;

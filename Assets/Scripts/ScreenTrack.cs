@@ -2,7 +2,7 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(Transform))]
-public class ScreenTrack : MonoBehaviour, ISerializationCallbackReceiver {
+public class ScreenTrack : MonoBehaviour {
 	private Camera _camera;
 	public Vector3 displacement;
 
@@ -14,10 +14,8 @@ public class ScreenTrack : MonoBehaviour, ISerializationCallbackReceiver {
 		transform.position = _camera.WorldToScreenPoint(transform.root.position) + displacement;
 	}
 
-	public void OnBeforeSerialize() {
+	public void Reset() {
 		_camera = Camera.main;
 		TrackRootScreenPos();
 	}
-
-	public void OnAfterDeserialize() { }
 }

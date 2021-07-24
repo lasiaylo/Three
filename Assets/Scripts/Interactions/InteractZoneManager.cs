@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 namespace Interactions {
-	public class InteractZoneManager : MonoBehaviour, ISerializationCallbackReceiver {
+	public class InteractZoneManager : MonoBehaviour  {
 		[SerializeField] private InteractBehaviour interactBehaviour;
 		private Dictionary<InteractZone, bool> _zoneDict;
 
@@ -24,12 +24,10 @@ namespace Interactions {
 			InteractionManager.Instance.Target = null;
 		}
 
-		public void OnBeforeSerialize() {
+		public void Reset() {
 			if (interactBehaviour is null) {
 				interactBehaviour = GetComponent<InteractBehaviour>();
 			}
 		}
-
-		public void OnAfterDeserialize() { }
 	}
 }
