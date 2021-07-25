@@ -28,11 +28,11 @@ namespace Interactions {
 		}
 
 		public override void Focus() {
-			AD.Instantiate(Path.ICON_ADDRESS, IconType.PLANT.ToString(), transform, ShowIcon);
+			IconManager.Instance.Show(this);
 		}
 
-		public override void Unfocus() { }
-
-		public void ShowIcon(GameObject obj) { }
+		public override void Unfocus() {
+			IconManager.Instance.HideIcon();
+		}
 	}
 }

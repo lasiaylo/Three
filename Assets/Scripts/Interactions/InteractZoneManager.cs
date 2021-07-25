@@ -3,12 +3,11 @@ using System.Linq;
 using UnityEngine;
 
 namespace Interactions {
-	public class InteractZoneManager : MonoBehaviour  {
+	public class InteractZoneManager : MonoBehaviour {
 		[SerializeField] private InteractBehaviour interactBehaviour;
 		private Dictionary<InteractZone, bool> _zoneDict;
 
 		public void Awake() {
-			// Should enforce if priorities aren't distinct
 			_zoneDict = GetComponentsInChildren<InteractZone>().ToDictionary(zone => zone, _ => false);
 		}
 

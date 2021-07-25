@@ -20,7 +20,6 @@ namespace Interactions {
 
 		public void Interact(InputAction.CallbackContext context) {
 			if (context.started) {
-				Debug.Log("IS this working??");
 				Target?.Interact();
 			}
 		}
