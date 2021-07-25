@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Util.Patterns;
 
 namespace Interactions {
@@ -17,8 +18,11 @@ namespace Interactions {
 			}
 		}
 
-		public void Interact() {
-			Target?.Interact();
+		public void Interact(InputAction.CallbackContext context) {
+			if (context.started) {
+				Debug.Log("IS this working??");
+				Target?.Interact();
+			}
 		}
 	}
 }

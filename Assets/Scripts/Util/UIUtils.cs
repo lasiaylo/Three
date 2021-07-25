@@ -5,7 +5,7 @@ namespace Util {
 	public static class UIUtils {
 		/// <summary>Calculates where to put dialogue bubble based on worldPosition and any desired screen margins. 
 		/// Ensure "constrainToViewportMargin" is between 0.0f-1.0f (% of screen) to constrain to screen, or value of -1 lets bubble go off-screen.</summary>
-		private static Vector2 WorldToAnchoredPosition(Camera camera, Canvas canvas, CanvasScaler canvasScaler,
+		public static Vector2 WorldToAnchoredPosition(Camera camera, Canvas canvas, CanvasScaler canvasScaler,
 			RectTransform bubble, Vector3 worldPos,
 			float constrainToViewportMargin = -1f) {
 			Vector2 screenPos = Vector2.zero;

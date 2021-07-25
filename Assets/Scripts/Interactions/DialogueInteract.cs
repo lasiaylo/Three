@@ -1,4 +1,5 @@
 using Interactions;
+using UnityEngine;
 using Util.Utils;
 
 public class DialogueInteract : InteractBehaviour {
@@ -6,7 +7,7 @@ public class DialogueInteract : InteractBehaviour {
 	private string _characterNameString;
 
 	public void Awake() {
-		_characterNameString = characterName.ToString();
+		_characterNameString = "1-" + characterName.ToString();
 	}
 
 	public override void Interact() {
