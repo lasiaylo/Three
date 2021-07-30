@@ -43,7 +43,6 @@ public class IconManager : Singleton<IconManager> {
 	}
 
 	public void ShowIcon(Sprite sprite) {
-		Debug.Log("THings fall apart");
 		image.sprite = sprite;
 		image.enabled = true;
 	}

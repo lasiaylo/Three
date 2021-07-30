@@ -22,10 +22,9 @@ namespace Movement.Translate {
 		public void Awake() {
 			_controller = GetComponent<CharacterController>();
 		}
-
 		public override void Update() {
 			base.Update();
-			_controller.Move(val * Time.deltaTime);
+			_controller.Move(postVal * Time.deltaTime);
 		}
 	}
 }
