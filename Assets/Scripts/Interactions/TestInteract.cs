@@ -7,11 +7,11 @@ namespace Interactions {
 		}
 
 		public override void Focus() {
-			Debug.Log("Focused");
+			// Debug.Log("Focused");
 		}
 
 		public override void Unfocus() {
-			Debug.Log("Unfocus");
+			// Debug.Log("Unfocus");
 		}
 	}
 }
