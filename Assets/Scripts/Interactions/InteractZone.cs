@@ -3,8 +3,7 @@ using UnityEngine;
 
 namespace Interactions {
 	[RequireComponent(typeof(Collider))]
-	public class InteractZone : MonoBehaviour, ISerializationCallbackReceiver {
-		public int priority;
+	public class InteractZone : MonoBehaviour {
 		public InteractZoneManager zoneManager;
 		[SerializeField] private bool isTriggered;
 
@@ -24,6 +23,10 @@ namespace Interactions {
 			SetTrigger(other, true);
 		}
 
+		public void OnTriggerStay(Collider other) {
+			OnTriggerEnter(other);
+		}
+
 		public void OnTriggerExit(Collider other) {
 			SetTrigger(other, false);
 		}
@@ -33,13 +36,11 @@ namespace Interactions {
 			IsTriggered = trigger;
 		}
 
-		public void OnBeforeSerialize() {
+		public void Reset() {
 			GetComponent<Collider>().isTrigger = true;
 			if (zoneManager is null) {
 				zoneManager = transform.parent.GetComponentInChildren<InteractZoneManager>();
 			}
 		}
-
-		public void OnAfterDeserialize() { }
 	}
 }

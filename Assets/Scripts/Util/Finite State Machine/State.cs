@@ -74,8 +74,7 @@ namespace Util.Finite_State_Machine {
 				currentSubstate.Tick(); // should we tick here? revisit later
 			}
 			else {
-				string typeName = stateType.FullName;
-				Debug.LogError("State " + typeName + " isn't in this machine");
+				Debug.LogError(String.Format("State {0} isn't in this machine", stateType.FullName));
 			}
 		}
 

@@ -5,22 +5,18 @@ using Util.Patterns;
 
 namespace Util.Managers {
 	public class ComponentCacheManager : Singleton<ComponentCacheManager> {
-		private readonly Dictionary<Component, Dictionary<Type, dynamic>> _cache =
-			new Dictionary<Component, Dictionary<Type, dynamic>>();
+		private readonly Dictionary<Tuple<string, Type>, Component> _cache =
+			new Dictionary<Tuple<string, Type>, Component>();
 
-		public T GetOnlyComponent<T>(Component component) {
+		public T GetOnlyComponent<T>(Component component) where T : Component {
 			Type type = typeof(T);
-			if (_cache.ContainsKey(component)) {
-				if (_cache[component].ContainsKey(type)) return (T) _cache[component][type];
-
-				_cache[component].Add(type, component.GetComponentInChildren<T>());
-				return _cache[component][type];
+			Tuple<string, Type> objectTypePair = new Tuple<string, Type>(component.name, type);
+			if (_cache.ContainsKey(objectTypePair)) {
+				return (T) _cache[objectTypePair];
 			}
 
-			Dictionary<Type, dynamic> componentCache = new Dictionary<Type, dynamic>
-				{{type, component.GetComponentInChildren<T>()}};
-			_cache.Add(component, componentCache);
-			return _cache[component][type];
+			_cache.Add(objectTypePair, component.GetComponentInChildren<T>());
+			return (T) _cache[objectTypePair];
 		}
 	}
 }
