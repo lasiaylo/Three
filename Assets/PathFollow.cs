@@ -5,15 +5,32 @@ using UnityEngine;
 // Sourced from https://gist.github.com/Tattomoosa/9fef0b0811adb562e4ac9a35fcf2e4b0
 // See https://forums.tigsource.com/index.php?topic=64819.0 for full discussion
 public class PathFollow : MovementMod {
-	public BGCurve curve; // Fix. Will not work with new curves
+	private BGCurve curve;
 	private BGCurveBaseMath _math;
 	private const float DAMP = 1.8f;
 
+	public BGCurve Curve {
+		set {
+			if (value == curve) return;
+			curve = value;
+			if (curve is null) {
+				_math = null;
+				enabled = false;
+				return;
+			}
+
+			enabled = true;
+			_math = new BGCurveBaseMath(curve, new BGCurveBaseMath.Config(BGCurveBaseMath.Fields.PositionAndTangent));
+		}
+	}
+
 	public void Awake() {
-		_math = new BGCurveBaseMath(curve, new BGCurveBaseMath.Config(BGCurveBaseMath.Fields.PositionAndTangent));
 		if (curve is null) {
 			enabled = false;
+			return;
 		}
+
+		_math = new BGCurveBaseMath(curve, new BGCurveBaseMath.Config(BGCurveBaseMath.Fields.PositionAndTangent));
 	}
 
 	public override Vector3 Modify(Vector3 val) {

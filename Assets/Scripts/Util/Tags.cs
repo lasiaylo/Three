@@ -92,6 +92,7 @@ namespace Util {
 
 	public enum General {
 		INTERACTABLE,
+		HAS_PATH,
 	}
 
 	public enum FloorMaterial {
