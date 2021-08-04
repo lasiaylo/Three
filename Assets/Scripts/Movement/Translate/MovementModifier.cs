@@ -18,14 +18,14 @@ namespace Movement.Translate {
 			private set => val = value;
 		}
 
-		public void Reset() {
-			_controller = GetComponent<CharacterController>();
-			GetComponents<Vector3>();
-		}
-
 		public override void Update() {
 			base.Update();
 			_controller.Move(postVal * Time.deltaTime);
+		}
+		
+		public new void Reset() {
+			base.Reset();
+			_controller = GetComponent<CharacterController>();
 		}
 	}
 }

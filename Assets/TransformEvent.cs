@@ -7,9 +7,9 @@ public class TransformEvent : MonoBehaviour {
 	public UnityEvent transformEvent;
 
 	public void Update() {
-		if (transform.parent.hasChanged) {
+		if (transform.hasChanged) {
 			transformEvent.Invoke();
-			transform.parent.hasChanged = false;
+			transform.hasChanged = false;
 		} 
 	}
 }

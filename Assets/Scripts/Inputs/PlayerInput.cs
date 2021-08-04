@@ -179,7 +179,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
             ]
         },
         {
-            ""name"": ""Dialogue"",
+            ""name"": ""Menu"",
             ""id"": ""9f79d022-a6b1-420a-97f2-ed8dad892595"",
             ""actions"": [
                 {
@@ -251,11 +251,11 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
         m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
         m_Movement_Interact = m_Movement.FindAction("Interact", throwIfNotFound: true);
-        // Dialogue
-        m_Dialogue = asset.FindActionMap("Dialogue", throwIfNotFound: true);
-        m_Dialogue_Next = m_Dialogue.FindAction("Next", throwIfNotFound: true);
-        m_Dialogue_Previous = m_Dialogue.FindAction("Previous", throwIfNotFound: true);
-        m_Dialogue_Confirm = m_Dialogue.FindAction("Confirm", throwIfNotFound: true);
+        // Menu
+        m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+        m_Menu_Next = m_Menu.FindAction("Next", throwIfNotFound: true);
+        m_Menu_Previous = m_Menu.FindAction("Previous", throwIfNotFound: true);
+        m_Menu_Confirm = m_Menu.FindAction("Confirm", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -351,39 +351,39 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     }
     public MovementActions @Movement => new MovementActions(this);
 
-    // Dialogue
-    private readonly InputActionMap m_Dialogue;
-    private IDialogueActions m_DialogueActionsCallbackInterface;
-    private readonly InputAction m_Dialogue_Next;
-    private readonly InputAction m_Dialogue_Previous;
-    private readonly InputAction m_Dialogue_Confirm;
-    public struct DialogueActions
+    // Menu
+    private readonly InputActionMap m_Menu;
+    private IMenuActions m_MenuActionsCallbackInterface;
+    private readonly InputAction m_Menu_Next;
+    private readonly InputAction m_Menu_Previous;
+    private readonly InputAction m_Menu_Confirm;
+    public struct MenuActions
     {
         private @PlayerInput m_Wrapper;
-        public DialogueActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Next => m_Wrapper.m_Dialogue_Next;
-        public InputAction @Previous => m_Wrapper.m_Dialogue_Previous;
-        public InputAction @Confirm => m_Wrapper.m_Dialogue_Confirm;
-        public InputActionMap Get() { return m_Wrapper.m_Dialogue; }
+        public MenuActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Next => m_Wrapper.m_Menu_Next;
+        public InputAction @Previous => m_Wrapper.m_Menu_Previous;
+        public InputAction @Confirm => m_Wrapper.m_Menu_Confirm;
+        public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(DialogueActions set) { return set.Get(); }
-        public void SetCallbacks(IDialogueActions instance)
+        public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+        public void SetCallbacks(IMenuActions instance)
         {
-            if (m_Wrapper.m_DialogueActionsCallbackInterface != null)
+            if (m_Wrapper.m_MenuActionsCallbackInterface != null)
             {
-                @Next.started -= m_Wrapper.m_DialogueActionsCallbackInterface.OnNext;
-                @Next.performed -= m_Wrapper.m_DialogueActionsCallbackInterface.OnNext;
-                @Next.canceled -= m_Wrapper.m_DialogueActionsCallbackInterface.OnNext;
-                @Previous.started -= m_Wrapper.m_DialogueActionsCallbackInterface.OnPrevious;
-                @Previous.performed -= m_Wrapper.m_DialogueActionsCallbackInterface.OnPrevious;
-                @Previous.canceled -= m_Wrapper.m_DialogueActionsCallbackInterface.OnPrevious;
-                @Confirm.started -= m_Wrapper.m_DialogueActionsCallbackInterface.OnConfirm;
-                @Confirm.performed -= m_Wrapper.m_DialogueActionsCallbackInterface.OnConfirm;
-                @Confirm.canceled -= m_Wrapper.m_DialogueActionsCallbackInterface.OnConfirm;
+                @Next.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnNext;
+                @Next.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnNext;
+                @Next.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnNext;
+                @Previous.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnPrevious;
+                @Previous.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnPrevious;
+                @Previous.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnPrevious;
+                @Confirm.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnConfirm;
+                @Confirm.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnConfirm;
+                @Confirm.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnConfirm;
             }
-            m_Wrapper.m_DialogueActionsCallbackInterface = instance;
+            m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Next.started += instance.OnNext;
@@ -398,14 +398,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
             }
         }
     }
-    public DialogueActions @Dialogue => new DialogueActions(this);
+    public MenuActions @Menu => new MenuActions(this);
     public interface IMovementActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
     }
-    public interface IDialogueActions
+    public interface IMenuActions
     {
         void OnNext(InputAction.CallbackContext context);
         void OnPrevious(InputAction.CallbackContext context);

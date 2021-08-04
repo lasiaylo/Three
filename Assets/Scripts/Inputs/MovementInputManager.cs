@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 using Util.Util_Classes;
 
 namespace Inputs {
-	public class InputManager : MonoBehaviour {
+	public class MovementInputManager : MonoBehaviour {
 		[SerializeField] private DefaultNormalVector2 input = default;
 		[SerializeField] private DefaultPhase jumpPhase = default;
 		[SerializeField] private Buffer<Phase> _jumpBuffer;
