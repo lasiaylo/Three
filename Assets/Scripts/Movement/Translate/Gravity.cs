@@ -20,7 +20,7 @@ namespace Movement.Translate {
 		public GravityTraits traits;
 
 		public void Awake() {
-			_controller = GetComponent<CharacterController>();
+			_controller = transform.parent.GetComponentInChildren<CharacterController>();
 		}
 
 		public override Vector3 Modify(Vector3 val) {

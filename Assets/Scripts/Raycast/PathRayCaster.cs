@@ -12,12 +12,12 @@ namespace Raycast {
 		}
 		
 		public override void OnCast(BGCurve hit) {
-			Debug.Log(hit);
+			if (hit is null) return;
 			pathFollow.Curve = hit;
 		}
 
 		public void Reset() {
-			pathFollow = GetComponentInParent<PathFollow>();
+			pathFollow = transform.parent.GetComponentInChildren<PathFollow>();
 			CastTag = General.HAS_PATH;
 			color = Color.green;
 		}

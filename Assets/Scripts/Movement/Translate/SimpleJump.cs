@@ -8,7 +8,7 @@ namespace Movement.Translate {
 		 private JumpTrait _traits = default;
 
 		public void Awake() {
-			_traits = GetComponentInChildren<JumpTrait>();
+			_traits = transform.parent.GetComponentInChildren<JumpTrait>();
 		}
 
 		public override Vector3 Modify(Vector3 direction) {

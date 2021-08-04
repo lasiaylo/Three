@@ -16,7 +16,7 @@ namespace Movement.Translate {
 		private MovementTrait _trait;
 
 		public void Awake() {
-			_trait = GetComponentInChildren<MovementTrait>();
+			_trait = transform.parent.GetComponentInChildren<MovementTrait>();
 		}
 
 		protected Vector3 Target {

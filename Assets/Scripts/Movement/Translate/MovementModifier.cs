@@ -9,9 +9,8 @@ namespace Movement.Translate {
 	///     Source: Dapper Dino's Design
 	///     https://github.com/DapperDino/Dapper-Tools/tree/master/Runtime/Components/Movements
 	/// </remarks>
-	[RequireComponent(typeof(CharacterController))]
 	public class MovementModifier : Modifier<Vector3> {
-		private CharacterController _controller;
+		public CharacterController _controller;
 		protected override Type ComponentType => typeof(MovementMod);
 
 		public Vector3 Value {
@@ -19,9 +18,11 @@ namespace Movement.Translate {
 			private set => val = value;
 		}
 
-		public void Awake() {
+		public void Reset() {
 			_controller = GetComponent<CharacterController>();
+			GetComponents<Vector3>();
 		}
+
 		public override void Update() {
 			base.Update();
 			_controller.Move(postVal * Time.deltaTime);
