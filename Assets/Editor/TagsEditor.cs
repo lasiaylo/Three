@@ -24,10 +24,10 @@ namespace Editor {
 					//TODO: Figure out how to have enum popup menu. Probably can't be done.
 					EditorGUI.LabelField(
 						new Rect(rect.x, rect.y, 60, EditorGUIUtility.singleLineHeight),
-						element.FindPropertyRelative("tagType").stringValue);
+						element.FindPropertyRelative("parentTag").stringValue);
 					EditorGUI.LabelField(
 						new Rect(rect.x + 92, rect.y, rect.width - 120, EditorGUIUtility.singleLineHeight),
-						element.FindPropertyRelative("value").stringValue);
+						element.FindPropertyRelative("name").stringValue);
 					EditorGUI.PropertyField(
 						new Rect(rect.x + 200, rect.y, rect.width - 60 - 30, EditorGUIUtility.singleLineHeight),
 						element.FindPropertyRelative("enabled"), GUIContent.none);
@@ -66,8 +66,8 @@ namespace Editor {
 			list.serializedProperty.arraySize++;
 			list.index = index;
 			SerializedProperty element = list.serializedProperty.GetArrayElementAtIndex(index);
-			element.FindPropertyRelative("tagType").stringValue = tag.parentTag;
-			element.FindPropertyRelative("value").stringValue = tag.name;
+			element.FindPropertyRelative("parentTag").stringValue = tag.parentTag;
+			element.FindPropertyRelative("name").stringValue = tag.name;
 			element.FindPropertyRelative("enabled").boolValue = true;
 			serializedObject.ApplyModifiedProperties();
 		}

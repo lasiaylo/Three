@@ -12,7 +12,6 @@ namespace Raycast {
 		}
 		
 		public override void OnCast(BGCurve hit) {
-			Debug.Log("YAA");
 			Debug.Log(hit);
 			pathFollow.Curve = hit;
 		}
