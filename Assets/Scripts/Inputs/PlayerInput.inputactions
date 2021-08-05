@@ -170,34 +170,31 @@
             "id": "9f79d022-a6b1-420a-97f2-ed8dad892595",
             "actions": [
                 {
-                    "name": "Confirm",
-                    "type": "Button",
-                    "id": "e2b558bd-74e8-4dd2-917e-87d8f346ae28",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press"
-                },
-                {
                     "name": "Move1",
                     "type": "PassThrough",
                     "id": "82678c5b-e6fc-4be4-90d0-ddb5a31205af",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Confirm",
+                    "type": "PassThrough",
+                    "id": "e2b558bd-74e8-4dd2-917e-87d8f346ae28",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Cancel",
+                    "type": "Button",
+                    "id": "4e4cec05-45e7-469b-9966-17d1d40b6d34",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "7ff6bdc2-46ba-47ad-9ebf-5a4f696ab847",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Confirm",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "2D Vector",
                     "id": "d9b2d59e-d9db-45c8-97b0-6ef2a1e83fcc",
@@ -307,6 +304,28 @@
                     "action": "Move1",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "772884aa-6e51-436a-976f-c25b9202ce3b",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7ff6bdc2-46ba-47ad-9ebf-5a4f696ab847",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Confirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

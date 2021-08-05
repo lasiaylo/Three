@@ -183,34 +183,31 @@ public class @PlayerInput : IInputActionCollection, IDisposable
             ""id"": ""9f79d022-a6b1-420a-97f2-ed8dad892595"",
             ""actions"": [
                 {
-                    ""name"": ""Confirm"",
-                    ""type"": ""Button"",
-                    ""id"": ""e2b558bd-74e8-4dd2-917e-87d8f346ae28"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                },
-                {
                     ""name"": ""Move1"",
                     ""type"": ""PassThrough"",
                     ""id"": ""82678c5b-e6fc-4be4-90d0-ddb5a31205af"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Confirm"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""e2b558bd-74e8-4dd2-917e-87d8f346ae28"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""4e4cec05-45e7-469b-9966-17d1d40b6d34"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""7ff6bdc2-46ba-47ad-9ebf-5a4f696ab847"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Confirm"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": ""2D Vector"",
                     ""id"": ""d9b2d59e-d9db-45c8-97b0-6ef2a1e83fcc"",
@@ -320,6 +317,28 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""Move1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""772884aa-6e51-436a-976f-c25b9202ce3b"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7ff6bdc2-46ba-47ad-9ebf-5a4f696ab847"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -333,8 +352,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_Movement_Interact = m_Movement.FindAction("Interact", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
-        m_Menu_Confirm = m_Menu.FindAction("Confirm", throwIfNotFound: true);
         m_Menu_Move1 = m_Menu.FindAction("Move1", throwIfNotFound: true);
+        m_Menu_Confirm = m_Menu.FindAction("Confirm", throwIfNotFound: true);
+        m_Menu_Cancel = m_Menu.FindAction("Cancel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -433,14 +453,16 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     // Menu
     private readonly InputActionMap m_Menu;
     private IMenuActions m_MenuActionsCallbackInterface;
-    private readonly InputAction m_Menu_Confirm;
     private readonly InputAction m_Menu_Move1;
+    private readonly InputAction m_Menu_Confirm;
+    private readonly InputAction m_Menu_Cancel;
     public struct MenuActions
     {
         private @PlayerInput m_Wrapper;
         public MenuActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Confirm => m_Wrapper.m_Menu_Confirm;
         public InputAction @Move1 => m_Wrapper.m_Menu_Move1;
+        public InputAction @Confirm => m_Wrapper.m_Menu_Confirm;
+        public InputAction @Cancel => m_Wrapper.m_Menu_Cancel;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -450,22 +472,28 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_MenuActionsCallbackInterface != null)
             {
-                @Confirm.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnConfirm;
-                @Confirm.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnConfirm;
-                @Confirm.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnConfirm;
                 @Move1.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnMove1;
                 @Move1.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnMove1;
                 @Move1.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnMove1;
+                @Confirm.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnConfirm;
+                @Confirm.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnConfirm;
+                @Confirm.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnConfirm;
+                @Cancel.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnCancel;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Confirm.started += instance.OnConfirm;
-                @Confirm.performed += instance.OnConfirm;
-                @Confirm.canceled += instance.OnConfirm;
                 @Move1.started += instance.OnMove1;
                 @Move1.performed += instance.OnMove1;
                 @Move1.canceled += instance.OnMove1;
+                @Confirm.started += instance.OnConfirm;
+                @Confirm.performed += instance.OnConfirm;
+                @Confirm.canceled += instance.OnConfirm;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
             }
         }
     }
@@ -478,7 +506,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     }
     public interface IMenuActions
     {
-        void OnConfirm(InputAction.CallbackContext context);
         void OnMove1(InputAction.CallbackContext context);
+        void OnConfirm(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
     }
 }

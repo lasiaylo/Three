@@ -1423,11 +1423,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f48cd302358a4b6c8c3213cbf99edcd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 11400000, guid: f9623253e0b3a45d7bbda42896d9a013, type: 2}
-  jumpPhase: {fileID: 11400000, guid: 2e9509ff2d2604eaca1b14601cc52e34, type: 2}
-  _jumpBuffer:
-    timer:
-      duration: 0
 --- !u!1 &1037530770
 GameObject:
   m_ObjectHideFlags: 0
@@ -1659,7 +1654,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1276809227}
   - component: {fileID: 1276809226}
-  - component: {fileID: 1276809228}
   m_Layer: 0
   m_Name: Input
   m_TagString: Untagged
@@ -1742,40 +1736,16 @@ MonoBehaviour:
     m_ActionName: Movement/Interact[/Keyboard/f]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: c3ad89e8-9425-4369-8771-3f9e1955cfdb
-    m_ActionName: New action map/New action
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2913740505509513198}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 89c90dea-bad5-48ef-bfdf-06878a64c326
-    m_ActionName: Dialogue/New action
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1225471425877542042}
-        m_TargetAssemblyTypeName: Yarn.Unity.LineView, YarnSpinner.Unity
-        m_MethodName: OnContinueClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_ActionId: e2b558bd-74e8-4dd2-917e-87d8f346ae28
     m_ActionName: Dialogue/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 82678c5b-e6fc-4be4-90d0-ddb5a31205af
+    m_ActionName: Menu/Move1[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/Keyboard/j,/Keyboard/l]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4e4cec05-45e7-469b-9966-17d1d40b6d34
+    m_ActionName: Menu/Cancel[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -1795,19 +1765,6 @@ Transform:
   m_Father: {fileID: 416548707}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1276809228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1276809225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b88bc0b065d7bb4e9f9566e67788fdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _input: {fileID: 1276809226}
 --- !u!1 &1302195498
 GameObject:
   m_ObjectHideFlags: 0
@@ -2400,9 +2357,9 @@ MonoBehaviour:
   useTypewriterEffect: 1
   typewriterEffectSpeed: 40
   continueButton: {fileID: 989701950172270952}
-  continueActionType: 0
-  continueActionKeyCode: 102
-  continueActionReference: {fileID: 8752512459623842916, guid: 7be405e01a47c46af88a5055d05e2f07, type: 3}
+  continueActionType: 1
+  continueActionKeyCode: 101
+  continueActionReference: {fileID: 0}
   continueAction:
     m_Name: Skip
     m_Type: 1
@@ -2831,7 +2788,7 @@ MonoBehaviour:
           m_StringArgument: Movement
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1276809228}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
         m_MethodName: SwitchToMovement
         m_Mode: 1
