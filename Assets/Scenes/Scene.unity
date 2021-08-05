@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1584,15 +1584,15 @@ MonoBehaviour:
   m_ActionsAsset: {fileID: -944628639613478452, guid: 7be405e01a47c46af88a5055d05e2f07, type: 3}
   m_PointAction: {fileID: 0}
   m_MoveAction: {fileID: -7662902553606219331, guid: 7be405e01a47c46af88a5055d05e2f07, type: 3}
-  m_SubmitAction: {fileID: 0}
+  m_SubmitAction: {fileID: 8411631313511989501, guid: 7be405e01a47c46af88a5055d05e2f07, type: 3}
   m_CancelAction: {fileID: 0}
-  m_LeftClickAction: {fileID: 8411631313511989501, guid: 7be405e01a47c46af88a5055d05e2f07, type: 3}
+  m_LeftClickAction: {fileID: 0}
   m_MiddleClickAction: {fileID: 0}
   m_RightClickAction: {fileID: 0}
   m_ScrollWheelAction: {fileID: 0}
   m_TrackedDevicePositionAction: {fileID: 0}
   m_TrackedDeviceOrientationAction: {fileID: 0}
-  m_DeselectOnBackgroundClick: 1
+  m_DeselectOnBackgroundClick: 0
   m_PointerBehavior: 0
 --- !u!114 &1105345692
 MonoBehaviour:
