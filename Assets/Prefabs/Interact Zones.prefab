@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8338530110097461460}
   - component: {fileID: 8338530110097461483}
   - component: {fileID: 6916781238984684725}
+  - component: {fileID: 7533800183688815791}
   m_Layer: 0
   m_Name: Interact Zones
   m_TagString: Untagged
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66b4bb5afd91448bbbeb07a30855e2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactBehaviour: {fileID: 0}
+  interactBehaviours: []
 --- !u!114 &6916781238984684725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +61,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &7533800183688815791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8338530110097461461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8fb8fcc585a74f19ac7441b09e824a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8338530110120441432
 GameObject:
   m_ObjectHideFlags: 0

@@ -485,32 +485,22 @@ MonoBehaviour:
   characterName: 0
   messageBubbleOffset: {x: 0, y: 3, z: 0}
   offsetUsesRotation: 0
---- !u!1 &110014714 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8338530110097461461, guid: 87209a6c094804960a26819537400fbd, type: 3}
-  m_PrefabInstance: {fileID: 249400980}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &110014715 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8338530110097461460, guid: 87209a6c094804960a26819537400fbd, type: 3}
   m_PrefabInstance: {fileID: 249400980}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &110014718
+--- !u!114 &110014719 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 7533800183688815791, guid: 87209a6c094804960a26819537400fbd, type: 3}
+  m_PrefabInstance: {fileID: 249400980}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110014714}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa6f5a46fa63648b7b09d2e18724703e, type: 3}
+  m_Script: {fileID: 11500000, guid: a8fb8fcc585a74f19ac7441b09e824a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconType: 0
-  messageBubbleOffset: {x: 0, y: 3, z: 0}
-  offsetUsesRotation: 0
-  characterName: 0
 --- !u!1 &112592658
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,7 +638,7 @@ PrefabInstance:
     - target: {fileID: 8338530110097461483, guid: 87209a6c094804960a26819537400fbd, type: 3}
       propertyPath: interactBehaviours.Array.data[0]
       value: 
-      objectReference: {fileID: 110014718}
+      objectReference: {fileID: 110014719}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87209a6c094804960a26819537400fbd, type: 3}
 --- !u!1 &345449283
@@ -668,7 +658,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &345449285
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1747,10 +1737,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa6f5a46fa63648b7b09d2e18724703e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconType: 0
-  messageBubbleOffset: {x: 0, y: 3, z: 0}
-  offsetUsesRotation: 0
   characterName: 1
+--- !u!114 &1174368100 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7533800183688815791, guid: 87209a6c094804960a26819537400fbd, type: 3}
+  m_PrefabInstance: {fileID: 8338530111229624203}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174368094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8fb8fcc585a74f19ac7441b09e824a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1240963498
 GameObject:
   m_ObjectHideFlags: 0
@@ -3553,10 +3551,14 @@ PrefabInstance:
       objectReference: {fileID: 1174368096}
     - target: {fileID: 8338530110097461483, guid: 87209a6c094804960a26819537400fbd, type: 3}
       propertyPath: interactBehaviours.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8338530110097461483, guid: 87209a6c094804960a26819537400fbd, type: 3}
       propertyPath: interactBehaviours.Array.data[0]
+      value: 
+      objectReference: {fileID: 1174368100}
+    - target: {fileID: 8338530110097461483, guid: 87209a6c094804960a26819537400fbd, type: 3}
+      propertyPath: interactBehaviours.Array.data[1]
       value: 
       objectReference: {fileID: 1174368096}
     m_RemovedComponents: []

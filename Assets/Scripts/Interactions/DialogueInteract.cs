@@ -1,7 +1,7 @@
 using Util.Utils;
 
 namespace Interactions {
-	public class DialogueInteract : IconInteractBehaviour {
+	public class DialogueInteract : InteractBehaviour {
 		public Name characterName;
 		private string _characterNameString;
 
@@ -12,5 +12,9 @@ namespace Interactions {
 		public override void Interact() {
 			YarnManager.Instance.StartDialogue(_characterNameString);
 		}
+
+		public override void Focus() { }
+
+		public override void Unfocus() { }
 	}
 }

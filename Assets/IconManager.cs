@@ -14,7 +14,7 @@ public class IconManager : Singleton<IconManager> {
 	public Image image;
 	public RectTransform dialogueBubbleRect;
 	public float bubbleMargin = 0.1f;
-	private IconInteractBehaviour _iconAnchor;
+	private IconFocusInteract _iconAnchor;
 	private Camera worldCamera;
 	private AsyncOperationHandle<Sprite> _handle;
 
@@ -37,7 +37,7 @@ public class IconManager : Singleton<IconManager> {
 		}
 	}
 
-	public void Show(IconInteractBehaviour iconAnchor) {
+	public void Show(IconFocusInteract iconAnchor) {
 		_iconAnchor = iconAnchor;
 		_handle = AD.Load<Sprite>(Path.ICON_ADDRESS, IconType.PLANT.ToString(), ShowIcon);
 	}
