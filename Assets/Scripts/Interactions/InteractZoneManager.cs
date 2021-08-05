@@ -4,11 +4,18 @@ using UnityEngine;
 
 namespace Interactions {
 	public class InteractZoneManager : MonoBehaviour {
-		[SerializeField] private InteractBehaviour interactBehaviour;
+		[SerializeField] private List<InteractBehaviour> interactBehaviours;
+		private HashSet<InteractBehaviour> interactBehavioursSet;
 		private Dictionary<InteractZone, bool> _zoneDict;
 
 		public void Awake() {
 			_zoneDict = GetComponentsInChildren<InteractZone>().ToDictionary(zone => zone, _ => false);
+			if (interactBehaviours is null || interactBehaviours.Count == 0) {
+				Debug.LogError("No InteractBehaviours found on this game object. Try resetting this component or adding behaviours");
+			}
+			else {
+				interactBehavioursSet = new HashSet<InteractBehaviour>(interactBehaviours);
+			}
 		}
 
 		public void UpdateTrigger(InteractZone zone, bool isTriggered) {
@@ -16,17 +23,15 @@ namespace Interactions {
 
 			_zoneDict[zone] = isTriggered;
 			if (_zoneDict.Values.Any(triggered => triggered)) {
-				InteractionManager.Instance.Target = interactBehaviour;
+				InteractionManager.Instance.Targets = interactBehavioursSet;
 				return;
 			}
 
-			InteractionManager.Instance.Target = null;
+			InteractionManager.Instance.Targets = null;
 		}
 
 		public void Reset() {
-			if (interactBehaviour is null) {
-				interactBehaviour = GetComponent<InteractBehaviour>();
-			}
+			interactBehaviours = new List<InteractBehaviour>(GetComponents<InteractBehaviour>());
 		}
 	}
 }
