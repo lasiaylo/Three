@@ -5,7 +5,7 @@ namespace Garden {
 	public class Plant : InteractBehaviour {
 		public PlantType plantType;
 		public Health health;
-		public Soil soil;
+		public SoilTile soil;
 
 		public void Awake() {
 			DayManager.Instance.onDayEnd.AddListener(day => CheckHealth());

@@ -30,7 +30,6 @@ namespace Garden {
 
 		private void Sow(GameObject obj) {
 			plant = obj.GetComponent<Plant>();
-			plant.soil = this;
 		}
 
 		private void Water(float amount) {

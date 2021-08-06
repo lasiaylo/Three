@@ -347,8 +347,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
             ""id"": ""e7b25bbf-0700-4fb4-9082-53963c749b04"",
             ""actions"": [
                 {
-                    ""name"": ""Move1"",
-                    ""type"": ""Value"",
+                    ""name"": ""Position"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""47ffee6d-051a-4531-a5e4-9304c42a0183"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
@@ -359,18 +359,24 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""1b59f2a0-970b-4539-a745-146724c4bb37"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move1"",
+                    ""groups"": ""Mouse & Keyboard"",
+                    ""action"": ""Position"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Mouse & Keyboard"",
+            ""bindingGroup"": ""Mouse & Keyboard"",
+            ""devices"": []
+        }
+    ]
 }");
         // Movement
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
@@ -384,7 +390,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_Menu_Cancel = m_Menu.FindAction("Cancel", throwIfNotFound: true);
         // Garden
         m_Garden = asset.FindActionMap("Garden", throwIfNotFound: true);
-        m_Garden_Move1 = m_Garden.FindAction("Move1", throwIfNotFound: true);
+        m_Garden_Position = m_Garden.FindAction("Position", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -532,12 +538,12 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     // Garden
     private readonly InputActionMap m_Garden;
     private IGardenActions m_GardenActionsCallbackInterface;
-    private readonly InputAction m_Garden_Move1;
+    private readonly InputAction m_Garden_Position;
     public struct GardenActions
     {
         private @PlayerInput m_Wrapper;
         public GardenActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move1 => m_Wrapper.m_Garden_Move1;
+        public InputAction @Position => m_Wrapper.m_Garden_Position;
         public InputActionMap Get() { return m_Wrapper.m_Garden; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -547,20 +553,29 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_GardenActionsCallbackInterface != null)
             {
-                @Move1.started -= m_Wrapper.m_GardenActionsCallbackInterface.OnMove1;
-                @Move1.performed -= m_Wrapper.m_GardenActionsCallbackInterface.OnMove1;
-                @Move1.canceled -= m_Wrapper.m_GardenActionsCallbackInterface.OnMove1;
+                @Position.started -= m_Wrapper.m_GardenActionsCallbackInterface.OnPosition;
+                @Position.performed -= m_Wrapper.m_GardenActionsCallbackInterface.OnPosition;
+                @Position.canceled -= m_Wrapper.m_GardenActionsCallbackInterface.OnPosition;
             }
             m_Wrapper.m_GardenActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Move1.started += instance.OnMove1;
-                @Move1.performed += instance.OnMove1;
-                @Move1.canceled += instance.OnMove1;
+                @Position.started += instance.OnPosition;
+                @Position.performed += instance.OnPosition;
+                @Position.canceled += instance.OnPosition;
             }
         }
     }
     public GardenActions @Garden => new GardenActions(this);
+    private int m_MouseKeyboardSchemeIndex = -1;
+    public InputControlScheme MouseKeyboardScheme
+    {
+        get
+        {
+            if (m_MouseKeyboardSchemeIndex == -1) m_MouseKeyboardSchemeIndex = asset.FindControlSchemeIndex("Mouse & Keyboard");
+            return asset.controlSchemes[m_MouseKeyboardSchemeIndex];
+        }
+    }
     public interface IMovementActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -575,6 +590,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     }
     public interface IGardenActions
     {
-        void OnMove1(InputAction.CallbackContext context);
+        void OnPosition(InputAction.CallbackContext context);
     }
 }

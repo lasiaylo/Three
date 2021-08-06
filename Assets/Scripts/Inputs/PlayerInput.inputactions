@@ -334,8 +334,8 @@
             "id": "e7b25bbf-0700-4fb4-9082-53963c749b04",
             "actions": [
                 {
-                    "name": "Move1",
-                    "type": "Value",
+                    "name": "Position",
+                    "type": "PassThrough",
                     "id": "47ffee6d-051a-4531-a5e4-9304c42a0183",
                     "expectedControlType": "Vector2",
                     "processors": "",
@@ -346,16 +346,22 @@
                 {
                     "name": "",
                     "id": "1b59f2a0-970b-4539-a745-146724c4bb37",
-                    "path": "<Mouse>/delta",
+                    "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Move1",
+                    "groups": "Mouse & Keyboard",
+                    "action": "Position",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "Mouse & Keyboard",
+            "bindingGroup": "Mouse & Keyboard",
+            "devices": []
+        }
+    ]
 }
