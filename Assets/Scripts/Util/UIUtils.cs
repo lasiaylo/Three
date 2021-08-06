@@ -63,5 +63,13 @@ namespace Util {
 
 			return screenPos;
 		}
+
+		public static Vector3 ClampToScreen(Vector3 pos) {
+			Camera main = Camera.main;
+			Vector3 newPos = main.WorldToViewportPoint(pos);
+			newPos.x = Mathf.Clamp01(pos.x);
+			newPos.y = Mathf.Clamp01(pos.y);
+			return main.ViewportToWorldPoint(newPos);
+		}
 	}
 }

@@ -4,20 +4,36 @@ using Util.Extensions;
 
 namespace Util.Utils {
 	public static class RayCastUtil {
-		private static RaycastHit[] _hits = new RaycastHit[1];
+		private static RaycastHit[] _hits = new RaycastHit[10];
+		private static Vector3 _prevHitPoint = new Vector3();
 
-		public static bool CastCollider(Ray ray, out Collider collider, float distance = Mathf.Infinity,
-			Color? debugColor = null) {
-			if (debugColor.HasValue) Debug.DrawRay(ray.origin, ray.direction * distance, debugColor.Value);
+		public static Vector3 CastPoint(Ray ray, float distance = Mathf.Infinity, Enum tag = null) {
+			Physics.RaycastNonAlloc(ray, _hits, distance);
+			foreach (RaycastHit hit in _hits) {
+				if (!hit.collider || !hit.collider.HasTag(tag)) continue;
+				Debug.Log(hit.collider);
+				_prevHitPoint = hit.point;
+				return hit.point;
+			}
 
+			return _prevHitPoint;
+		}
+
+		public static bool CastCollider(
+			Ray ray,
+			out Collider collider,
+			float distance = Mathf.Infinity
+		) {
 			Physics.Raycast(ray, out RaycastHit hit, distance);
 			collider = hit.collider;
 			return collider;
 		}
 
-		public static bool CastColliderNonAlloc(Ray ray, out Collider collider, float distance = Mathf.Infinity,
-			Color? debugColor = null) {
-			if (debugColor.HasValue) Debug.DrawRay(ray.origin, ray.direction * distance, debugColor.Value);
+		public static bool CastColliderNonAlloc(
+			Ray ray,
+			out Collider collider,
+			float distance = Mathf.Infinity
+		) {
 			collider = null;
 			Physics.RaycastNonAlloc(ray, _hits, distance);
 			if (_hits.Length > 0) {
@@ -30,32 +46,31 @@ namespace Util.Utils {
 
 		public static T CastNonAlloc<T>(Ray ray, float distance = Mathf.Infinity, Enum tag = null,
 			Color? debugColor = null) where T : Component {
-			if (CastColliderNonAlloc(ray, out Collider collider, distance, debugColor))
-				if (collider.TryGetOnlyComponent(out Tags tags) && HasTag(tags, tag))
+			if (CastColliderNonAlloc(ray, out Collider collider, distance))
+				if (collider.HasTag(tag))
 					return collider.GetOnlyComponent<T>();
 			return default;
 		}
 
-		public static T Cast<T>(Ray ray, float distance = Mathf.Infinity, Enum tag = null, Color? debugColor = null)
+		public static T Cast<T>(Ray ray, float distance = Mathf.Infinity, Enum tag = null)
 			where T : Component {
-			if (CastCollider(ray, out Collider collider, distance, debugColor))
-				if (collider.TryGetOnlyComponent(out Tags tags) && HasTag(tags, tag))
+			if (CastCollider(ray, out Collider collider, distance))
+				if (collider.HasTag(tag))
 					return collider.GetOnlyComponent<T>();
 
 			return default;
 		}
 
-		public static T Cast<T>(Camera camera, float distance = Mathf.Infinity, Enum tag = null,
-			Color? debugColor = null)
+		public static T Cast<T>(Camera camera, float distance = Mathf.Infinity, Enum tag = null)
 			where T : Component {
 			var screenPos = new Vector2((camera.pixelWidth - 1) / 2, (camera.pixelHeight - 1) / 2);
 			Ray ray = camera.ScreenPointToRay(screenPos);
-			return Cast<T>(ray, distance, tag, debugColor);
+			return Cast<T>(ray, distance, tag);
 		}
 
-		private static bool HasTag(Tags tags, Enum tagValue) {
-			if (tagValue == null) return true;
-			return tags && tags.HasTag(tagValue);
+		public static void DebugRay(Ray ray, float distance = Mathf.Infinity, Color? debugColor = null) {
+			if (debugColor is null) debugColor = Color.red;
+			Debug.DrawRay(ray.origin, ray.direction * distance, debugColor.Value);
 		}
 	}
 }

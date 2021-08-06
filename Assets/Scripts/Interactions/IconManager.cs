@@ -49,7 +49,8 @@ public class IconManager : Singleton<IconManager> {
 
 	public void HideIcon() {
 		// Shrink animation
-		image.sprite = null;
+		if (image is null) return;
+		// image.sprite = null;
 		image.enabled = false; 
 		Addressables.Release(_handle); // Maybe keep around until scene ends?
 		_handle = default;

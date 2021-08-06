@@ -6,7 +6,7 @@ namespace Interactions {
 		private string _characterNameString;
 
 		public void Awake() {
-			_characterNameString = "1-" + characterName.ToString();
+			_characterNameString = "1-" + characterName;
 		}
 
 		public override void Interact() {

@@ -26,7 +26,9 @@ public class IconFocusInteract : InteractBehaviour {
 		}
 	}
 
-	public override void Interact() { }
+	public override void Interact() {
+		IconManager.Instance.HideIcon();
+	}
 
 	public override void Focus() {
 		IconManager.Instance.Show(this);

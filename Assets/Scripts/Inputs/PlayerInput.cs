@@ -341,6 +341,33 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Garden"",
+            ""id"": ""e7b25bbf-0700-4fb4-9082-53963c749b04"",
+            ""actions"": [
+                {
+                    ""name"": ""Move1"",
+                    ""type"": ""Value"",
+                    ""id"": ""47ffee6d-051a-4531-a5e4-9304c42a0183"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""1b59f2a0-970b-4539-a745-146724c4bb37"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -355,6 +382,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_Menu_Move1 = m_Menu.FindAction("Move1", throwIfNotFound: true);
         m_Menu_Confirm = m_Menu.FindAction("Confirm", throwIfNotFound: true);
         m_Menu_Cancel = m_Menu.FindAction("Cancel", throwIfNotFound: true);
+        // Garden
+        m_Garden = asset.FindActionMap("Garden", throwIfNotFound: true);
+        m_Garden_Move1 = m_Garden.FindAction("Move1", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -498,6 +528,39 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         }
     }
     public MenuActions @Menu => new MenuActions(this);
+
+    // Garden
+    private readonly InputActionMap m_Garden;
+    private IGardenActions m_GardenActionsCallbackInterface;
+    private readonly InputAction m_Garden_Move1;
+    public struct GardenActions
+    {
+        private @PlayerInput m_Wrapper;
+        public GardenActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move1 => m_Wrapper.m_Garden_Move1;
+        public InputActionMap Get() { return m_Wrapper.m_Garden; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GardenActions set) { return set.Get(); }
+        public void SetCallbacks(IGardenActions instance)
+        {
+            if (m_Wrapper.m_GardenActionsCallbackInterface != null)
+            {
+                @Move1.started -= m_Wrapper.m_GardenActionsCallbackInterface.OnMove1;
+                @Move1.performed -= m_Wrapper.m_GardenActionsCallbackInterface.OnMove1;
+                @Move1.canceled -= m_Wrapper.m_GardenActionsCallbackInterface.OnMove1;
+            }
+            m_Wrapper.m_GardenActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Move1.started += instance.OnMove1;
+                @Move1.performed += instance.OnMove1;
+                @Move1.canceled += instance.OnMove1;
+            }
+        }
+    }
+    public GardenActions @Garden => new GardenActions(this);
     public interface IMovementActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -509,5 +572,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnMove1(InputAction.CallbackContext context);
         void OnConfirm(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
+    }
+    public interface IGardenActions
+    {
+        void OnMove1(InputAction.CallbackContext context);
     }
 }
