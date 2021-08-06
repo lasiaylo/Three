@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Util.Util_Classes;
 
@@ -6,7 +6,8 @@ namespace Garden {
 	// Will rename to Soil once I get rid of old Soil class
 	public class SoilGrid {
 		[SerializeField] private static readonly int GridSize = 10;
-		private SoilTile[,] _grid = new SoilTile[GridSize, GridSize];
+		private readonly SoilTile[,] _grid = new SoilTile[GridSize, GridSize];
+		private readonly List<SoilTile> _targets = new List<SoilTile>();
 
 		private delegate SoilTile SoilDel(SoilTile tile, int i, int j);
 
@@ -16,6 +17,17 @@ namespace Garden {
 				return tile;
 			};
 			Circle(_grid, point, radius, del);
+		}
+
+		public float GetDampness(Vector2 point, int radius) {
+			_targets.Clear();
+			GetCircle(_grid, _targets, point, radius);
+			float total = 0;
+			foreach (SoilTile tile in _targets) {
+				total += tile.damp;
+			}
+
+			return total / _targets.Count;
 		}
 
 		// Can refactor out to util class
@@ -30,6 +42,22 @@ namespace Garden {
 				for (int j = yMin; j < yMax; j++) {
 					if (Vector2.Distance(new Vector2(i, j), point) <= radius) {
 						del(grid[i, j], i, j);
+					}
+				}
+			}
+		}
+
+		private static void GetCircle(SoilTile[,] grid, ICollection<SoilTile> inputList, Vector2 point, int radius) {
+			point = point.Clamp(Vector2.zero, new Vector2(GridSize, GridSize));
+			int xMin = (int) Mathf.Clamp(point.x - radius, 0, GridSize);
+			int xMax = (int) Mathf.Clamp(point.x + radius, 0, GridSize);
+			int yMin = (int) Mathf.Clamp(point.y - radius, 0, GridSize);
+			int yMax = (int) Mathf.Clamp(point.y + radius, 0, GridSize);
+
+			for (int i = xMin; i < xMax; i++) {
+				for (int j = yMin; j < yMax; j++) {
+					if (Vector2.Distance(new Vector2(i, j), point) <= radius) {
+						inputList.Add(grid[i, j]);
 					}
 				}
 			}
