@@ -1,9 +1,9 @@
-using BansheeGz.BGSpline.Curve;
+using Cinemachine;
 using UnityEngine;
 using Util;
 
 namespace Raycast {
-	public class PathRayCaster : RayCaster<BGCurve> {
+	public class PathRayCaster : RayCaster<CinemachinePathBase> {
 		public PathFollow pathFollow;
 
 		public override Vector3 Direction {
@@ -11,9 +11,9 @@ namespace Raycast {
 			set { }
 		}
 		
-		public override void OnCast(BGCurve hit) {
+		public override void OnCast(CinemachinePathBase hit) {
 			if (hit is null) return;
-			pathFollow.Curve = hit;
+			pathFollow.Path = hit;
 		}
 
 		public void Reset() {
