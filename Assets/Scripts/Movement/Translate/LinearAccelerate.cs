@@ -1,5 +1,4 @@
-﻿using Scriptable_Objects.Prototypes.Traits;
-using Scriptable_Objects.Prototypes.Util.Variable.Default;
+﻿using Scriptable_Objects.Prototypes.Util.Variable.Default;
 using Traits;
 using UnityEngine;
 
@@ -27,13 +26,17 @@ namespace Movement.Translate {
 		}
 
 		public override Vector3 Modify(Vector3 val) {
-			return Vector3.MoveTowards(val, Target, Speed(val) * Time.deltaTime);
+			return Vector3.MoveTowards(val, Target, GetSpeed(val) * Time.deltaTime);
 		}
 
-		protected float Speed(Vector3 val) {
-			return inputDirection.Val.IsZero() && Vector3.Angle(val.GetXz(), inputDirection.Val) <= 90
-				? _trait.val.deceleration
-				: _trait.val.acceleration;
+		protected virtual bool ShouldAccelerate(Vector3 val) {
+			return !inputDirection.Val.IsZero() && Vector3.Angle(val.GetXz(), inputDirection.Val) <= 90;
+		}
+
+		protected float GetSpeed(Vector3 val) {
+			return ShouldAccelerate(val)
+				? _trait.val.acceleration
+				: _trait.val.deceleration;
 		}
 	}
 }
