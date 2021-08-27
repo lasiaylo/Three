@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdf0cad143cc5754897d9152f47e2467, type: 3}
   m_Name: PlayerOrientation
   m_EditorClassIdentifier: 
-  _Val: {x: 0, y: 0, z: 0, w: 0}
+  _Val: {x: 0, y: 0.3741883, z: 0, w: 0.9273527}
   DefaultValue: {x: 0, y: 0, z: 0, w: 0}
