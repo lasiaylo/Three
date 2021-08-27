@@ -146,7 +146,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""94d9fcb2-8e8f-4d85-9e85-9cf87c59791e"",
-                    ""path"": ""<Keyboard>/j"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -157,7 +157,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""right"",
                     ""id"": ""e2269306-41d0-4631-81ed-0b0c0fa0fc63"",
-                    ""path"": ""<Keyboard>/l"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
