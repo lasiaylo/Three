@@ -1,4 +1,5 @@
 using BansheeGz.BGSpline.Curve;
+using Cinemachine;
 using Movement.Translate;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ using UnityEngine;
 // See https://forums.tigsource.com/index.php?topic=64819.0 for full discussion
 public class PathFollow : MovementMod {
 	private BGCurve curve;
+	private CinemachinePathBase path;
 	private BGCurveBaseMath _math;
 	private const float DAMP = 1.8f;
 
@@ -33,6 +35,12 @@ public class PathFollow : MovementMod {
 		_math = new BGCurveBaseMath(curve, new BGCurveBaseMath.Config(BGCurveBaseMath.Fields.PositionAndTangent));
 	}
 
+	public Vector3 Mod(Vector3 val) {
+		
+	}
+
+
+
 	public override Vector3 Modify(Vector3 val) {
 		// val.x refers to left/right input.
 		// TODO - Use ground position instead of transform position;
@@ -47,8 +55,19 @@ public class PathFollow : MovementMod {
 		);
 		return new Vector3(resultDir.x, val.y, resultDir.z);
 	}
+	
+	private Vector3 CalculateForwardFromClostestPoint(Vector3 currentPos) {
+		float closestPoint = path.FindClosestPoint(currentPos, 0, -1, 10);
+		// need to keep track of start segment
+		// figure out a good search radius
+		// find good steps pers egment
+		Vector3 targetPos = path.EvaluatePosition(closestPoint);
+		
+	}
 
 	private Vector3 CalculateForwardFromClosestPoint(Vector3 currentPos, out Vector3 curvePoint) {
+
+		
 		Vector3 forward = CalculateTangentFromClosestPoint(currentPos, out curvePoint);
 		forward.y = 0;
 		return forward.normalized;
