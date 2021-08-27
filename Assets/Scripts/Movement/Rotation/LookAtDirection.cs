@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace Movement.Rotation {
-	public class TurnTowards : Mod<Quaternion> {
+	public class AimAtDirection : Mod<Quaternion> {
 		[SerializeField] private float turnSpeed = default;
 		public Vector3 Direction { private get; set; }
 
