@@ -1,6 +1,6 @@
 using UnityEngine;
 
 namespace Movement.Rotation {
-	[RequireComponent(typeof(RotationTicker))]
+	[RequireComponent(typeof(RotationModifier))]
 	public abstract class RotationMod : Mod<Quaternion> { }
 }

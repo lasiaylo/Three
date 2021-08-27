@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Util.Attributes;
+using Util.Scriptable_Objects.Prototypes.Variable._Types;
 
 namespace Movement {
 	/// <summary>
@@ -12,8 +13,8 @@ namespace Movement {
 	public abstract class Modifier<T> : MonoBehaviour {
 		[Expandable] public List<Mod<T>> mods;
 		[Expandable] public List<Mod<T>> postMods;
-		[SerializeField] protected T val;
-		[SerializeField] protected T postVal; 
+		[SerializeField] protected T val; // TODO: Wrap in SO
+		[SerializeField] protected DefaultVariable<T> postVal;
 		protected abstract Type ComponentType { get; }
 
 		public virtual void Update() {
@@ -21,12 +22,14 @@ namespace Movement {
 			foreach (Mod<T> mod in mods)
 				if (mod.enabled)
 					val = mod.Modify(val);
-			
-			postVal = val;
+
+			T tempPostVal = val;
 			foreach (Mod<T> fx in postMods) {
 				if (fx.enabled)
-					postVal = fx.Modify(postVal);
+					tempPostVal = fx.Modify(tempPostVal);
 			}
+
+			postVal.Val = tempPostVal;
 		}
 
 		public void Reset() {

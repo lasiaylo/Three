@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9fb93de6d135b46eb841191167f9e914, type: 3}
-  m_Name: PlayerJump
+  m_Name: PlayerJumpTraits
   m_EditorClassIdentifier: 
   _Val:
     speed: 5

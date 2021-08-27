@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 namespace Movement.Rotation {
-	public class RotationTicker : Modifier<Quaternion> {
+	public class RotationModifier : Modifier<Quaternion> {
 		protected override Type ComponentType => typeof(RotationMod);
 
 		public void Awake() {

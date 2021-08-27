@@ -1,16 +1,17 @@
-﻿using UnityEngine;
+﻿using ScriptableObjects.Prototypes.Variable;
+using UnityEngine;
 
 namespace Movement.Rotation {
-	public class AimAtDirection : Mod<Quaternion> {
+	public class LookAtDirection : Mod<Quaternion> {
+		[SerializeField] private DefaultVector3 direction = default;
 		[SerializeField] private float turnSpeed = default;
-		public Vector3 Direction { private get; set; }
 
 		public override Quaternion Modify(Quaternion val) {
-			return Direction.IsZero()
+			return direction.Val.IsZero()
 				? val
 				: Quaternion.RotateTowards(
 					val,
-					Quaternion.LookRotation(Direction),
+					Quaternion.LookRotation(direction.Val),
 					turnSpeed * Time.deltaTime
 				);
 		}
