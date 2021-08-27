@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Movement.Translate {
 	public class SimpleJump : MovementMod {
 		[SerializeField] private DefaultPhase jumpInput = default;
-		 private JumpTrait _traits = default;
+		private JumpTrait _traits = default;
 
 		public void Awake() {
 			_traits = transform.parent.GetComponentInChildren<JumpTrait>();
@@ -16,8 +16,5 @@ namespace Movement.Translate {
 			jumpInput.Val = Phase.End;
 			return new Vector3(direction.x, _traits.val.speed, direction.z);
 		}
-
 	}
-	
-
 }

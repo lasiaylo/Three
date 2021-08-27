@@ -28,11 +28,14 @@ namespace Movement.Translate {
 			float delta = GroundGravity;
 			if (!_controller.isGrounded) {
 				fallSpeed = -traits.maxFallSpeed;
-				float arcMult = ShouldArc(val) ? traits.arcMult : 1;
-				delta = traits.gravity * arcMult;
+				delta = GetGravitySpeed(val) * GetArcMultiplier(val);
 			}
 
 			return val.MoveTowardsY(fallSpeed, delta * Time.deltaTime);
+		}
+
+		private float GetArcMultiplier(Vector3 val) {
+			return ShouldArc(val) ? traits.arcMult : 1;
 		}
 
 		private bool ShouldArc(Vector3 direction) {
@@ -41,10 +44,12 @@ namespace Movement.Translate {
 				arcEvent.Invoke(direction.y > 0 ? Direction.UP : Direction.DOWN);
 				_arcStart = false;
 			}
-
 			_arcStart = _controller.isGrounded || _arcStart;
-
 			return shouldArc;
+		}
+
+		private float GetGravitySpeed(Vector3 val) {
+			return val.y > 0 ? traits.upGravity : traits.downGravity;
 		}
 	}
 
@@ -52,7 +57,8 @@ namespace Movement.Translate {
 	public struct GravityTraits {
 		public float arcThreshold;
 		public float arcMult;
-		public float gravity;
+		public float upGravity;
+		public float downGravity;
 		public float maxFallSpeed;
 	}
 }
