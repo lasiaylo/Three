@@ -5,13 +5,18 @@ namespace Interactions {
 	[RequireComponent(typeof(Collider))]
 	public class InteractZone : MonoBehaviour {
 		public InteractZoneManager zoneManager;
-		[SerializeField] private bool isTriggered;
+		public bool isTriggered;
 
 		private bool IsTriggered {
 			set {
 				if (value == isTriggered) return;
 				isTriggered = value;
-				zoneManager.UpdateTrigger(this, value);
+				if (isTriggered) {
+					zoneManager.OnZoneTriggered();
+				}
+				else {
+					zoneManager.OnZoneUntriggered();
+				}
 			}
 		}
 

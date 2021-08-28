@@ -9,10 +9,10 @@ namespace Interactions {
 		[SerializeField] private Camera mainCamera;
 		[SerializeField] private List<InteractBehaviour> interactBehaviours;
 		private HashSet<InteractBehaviour> _interactBehavioursSet;
-		private Dictionary<InteractZone, bool> _zoneDict;
+		private HashSet<InteractZone> _zoneSet;
 
 		public void Awake() {
-			_zoneDict = GetComponentsInChildren<InteractZone>().ToDictionary(zone => zone, _ => false);
+			_zoneSet = new HashSet<InteractZone>(GetComponentsInChildren<InteractZone>());
 			if (interactBehaviours is null || interactBehaviours.Count == 0) {
 				Debug.LogError("No InteractBehaviours found on this game object. Try resetting this component or adding behaviours");
 			}
@@ -23,8 +23,9 @@ namespace Interactions {
 			mainCamera = Camera.main;
 			TransformEvent transformEvent = mainCamera != null ? mainCamera.GetComponentInChildren<TransformEvent>() : null;
 			if (transformEvent != null) {
-				transformEvent.transformEvent.AddListener(OnCameraTransform);
+				transformEvent.transformEvent.AddListener(OnCameraRotate);
 			}
+			OnCameraRotate();
 		}
 
 		public void OnDrawGizmos() {
@@ -36,23 +37,25 @@ namespace Interactions {
 			Gizmos.DrawRay(Vector3.zero, mainCamera.transform.position);
 		}
 
-		public void UpdateTrigger(InteractZone zone, bool isTriggered) {
-			if (_zoneDict[zone] == isTriggered) return;
+		public void OnZoneTriggered() {
+				InteractionManager.Instance.Targets = _interactBehavioursSet;
+		}
 
-			_zoneDict[zone] = isTriggered;
-			if (_zoneDict.Values.Any(triggered => triggered)) {
+		public void OnZoneUntriggered() {
+			if (_zoneSet.Any(zone => zone.isTriggered)) {
 				InteractionManager.Instance.Targets = _interactBehavioursSet;
 				return;
 			}
 
 			InteractionManager.Instance.Targets = null;
+			
 		}
 
-		public void OnCameraTransform() {
+		public void OnCameraRotate() {
 			bool cameraIsInFront = GetCameraIsInFront();
 			Debug.Log(cameraIsInFront);
-
-			foreach (InteractZone zone in _zoneDict.Keys) {
+			
+			foreach (InteractZone zone in _zoneSet) {
 				zone.enabled = cameraIsInFront;
 			}
 		}
