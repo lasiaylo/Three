@@ -2,6 +2,7 @@
 using Traits;
 using UnityEngine;
 using UnityEngine.Events;
+using Util.Extensions;
 
 namespace Movement.Translate {
 	/// <summary>

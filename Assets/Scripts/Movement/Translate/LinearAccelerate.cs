@@ -1,6 +1,7 @@
 ﻿using Scriptable_Objects.Prototypes.Util.Variable.Default;
 using Traits;
 using UnityEngine;
+using Util.Extensions;
 
 namespace Movement.Translate {
 	/// <summary>

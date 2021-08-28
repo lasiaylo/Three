@@ -11,7 +11,7 @@ namespace Interactions {
 		public UnityEvent<bool> observeEvent;
 		private Camera _camera;
 		private bool _isObserved;
-		private Vector3 prevPos;
+		private Vector3 _prevPos;
 		private Direction _prevDirection;
 
 		private bool IsObserved {
@@ -44,26 +44,26 @@ namespace Interactions {
 		}
 
 		private void Observe(bool isObserved) {
-			if (isObserved) { onObserve.Invoke();}
+			if (isObserved) {
+				onObserve.Invoke();
+			}
 			else {
 				onUnobserve.Invoke();
 			}
-			
 		}
 
 		private bool IsObservedBy(Component viewer) {
 			DirectionTrait direction = viewer.GetOnlyComponent<DirectionTrait>();
 			Vector3 viewerPos = viewer.transform.position;
-			if (viewerPos == prevPos && direction.val == _prevDirection) return IsObserved;
+			if (viewerPos == _prevPos && direction.val == _prevDirection) return IsObserved;
+			
 			Vector3 myPos = transform.position;
-			prevPos = viewerPos;
+			_prevPos = viewerPos;
 			_prevDirection = direction.val;
 			
 			return direction.val switch {
-				Direction.RIGHT => _camera.WorldToScreenPoint(viewerPos).x <
-				                   _camera.WorldToScreenPoint(myPos).x,
-				Direction.LEFT => _camera.WorldToScreenPoint(viewerPos).x >
-				                  _camera.WorldToScreenPoint(myPos).x,
+				Direction.RIGHT => myPos.IsCameraRightOf(viewerPos, _camera),
+				Direction.LEFT => myPos.IsCameraLeftOf(viewerPos, _camera),
 				_ => false,
 			};
 		}

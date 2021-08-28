@@ -1,4 +1,5 @@
 using UnityEngine;
+using Util.Extensions;
 
 namespace Movement.Translate {
 	public class LinearAccelerateX : LinearAccelerate {

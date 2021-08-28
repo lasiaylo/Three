@@ -1,6 +1,7 @@
 ﻿using System;
 using ScriptableObjects.Prototypes.Variable;
 using UnityEngine;
+using Util.Extensions;
 
 namespace Movement.Rotation {
 	public class LookAtDirection : Mod<Quaternion> {

@@ -1,6 +1,7 @@
 using System;
 using Scriptable_Objects.Prototypes.Util.Variable.Default;
 using UnityEngine;
+using Util.Extensions;
 using Util.Finite_State_Machine;
 
 namespace FSM.Movement {
