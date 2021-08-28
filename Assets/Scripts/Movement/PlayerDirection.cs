@@ -1,20 +1,22 @@
+using Scriptable_Objects.Prototypes.Util.Variable.Default;
 using Traits;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Movement {
 	public class PlayerDirection : MonoBehaviour {
+		[SerializeField] private DefaultNormalVector2 input;
 		private DirectionTrait _directionTrait;
 
 		public void Awake() {
 			_directionTrait = GetComponentInChildren<DirectionTrait>();
 		}
 
-		public void OnMove(InputAction.CallbackContext context) {
-			Vector2 input = context.ReadValue<Vector2>();
-			if (input.x < 0) {
+		// To optimize, trigger on event. 
+		public void Update() {
+			if (input.Val.x < 0) {
 				_directionTrait.val = Direction.LEFT;
-			} else if (input.x > 0) {
+			} else if (input.Val.x > 0) {
 				_directionTrait.val = Direction.RIGHT;
 			}
 		}

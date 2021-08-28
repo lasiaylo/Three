@@ -1,5 +1,3 @@
-using Scriptable_Objects.Prototypes.Util.Variable.Default;
-
 namespace Traits {
 	public class DirectionTrait: Trait<Direction> { }
 	
