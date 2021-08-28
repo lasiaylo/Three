@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -980,6 +980,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334fe77dbcd9c490ea0be0eb23ff52b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerOnTranslate: 1
+  triggerOnRotate: 0
+  minTriggerDistance: 0
+  minTriggerRotation: 0
   transformEvent:
     m_PersistentCalls:
       m_Calls:
@@ -1821,7 +1825,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206077174}
-  m_LocalRotation: {x: 0.10420112, y: -0.6856586, z: 0.10014461, w: 0.7134322}
+  m_LocalRotation: {x: 0.1042011, y: -0.6856586, z: 0.1001446, w: 0.7134322}
   m_LocalPosition: {x: 9.231617, y: 2.81, z: 0.5239897}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2096,7 +2100,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1302195498}
-  m_LocalRotation: {x: 0.10420112, y: -0.6856586, z: 0.10014461, w: 0.7134322}
+  m_LocalRotation: {x: 0.1042011, y: -0.6856586, z: 0.1001446, w: 0.7134322}
   m_LocalPosition: {x: 8.772932, y: 4.6657867, z: 3.518097}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2149,6 +2153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334fe77dbcd9c490ea0be0eb23ff52b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerOnTranslate: 0
+  triggerOnRotate: 1
+  minTriggerDistance: 0
+  minTriggerRotation: 40
   transformEvent:
     m_PersistentCalls:
       m_Calls: []

@@ -28,15 +28,6 @@ namespace Interactions {
 			OnCameraRotate();
 		}
 
-		public void OnDrawGizmos() {
-			Gizmos.color = Color.cyan;
-			Vector3 position = transform.parent.position;
-			Gizmos.matrix = Matrix4x4.TRS( position, GetInteractDirection(), Vector3.one );
-			Gizmos.DrawFrustum(Vector3.zero, fov, 10, 0, 1);
-			Gizmos.matrix = Matrix4x4.TRS( position, Quaternion.identity,Vector3.one );
-			Gizmos.DrawRay(Vector3.zero, mainCamera.transform.position);
-		}
-
 		public void OnZoneTriggered() {
 				InteractionManager.Instance.Targets = _interactBehavioursSet;
 		}
@@ -72,6 +63,15 @@ namespace Interactions {
 
 		public void Reset() {
 			interactBehaviours = new List<InteractBehaviour>(GetComponents<InteractBehaviour>());
+		}		
+		
+		public void OnDrawGizmosSelected() {
+			Gizmos.color = Color.cyan;
+			Vector3 position = transform.parent.position;
+			Gizmos.matrix = Matrix4x4.TRS( position, GetInteractDirection(), Vector3.one );
+			Gizmos.DrawFrustum(Vector3.zero, fov, 10, 0, 1);
+			Gizmos.matrix = Matrix4x4.TRS( position, Quaternion.identity,Vector3.one );
+			Gizmos.DrawRay(Vector3.zero, mainCamera.transform.position);
 		}
 	}
 }
