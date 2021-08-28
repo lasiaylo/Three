@@ -1,7 +1,6 @@
 using Scriptable_Objects.Prototypes.Util.Variable.Default;
 using Traits;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Movement {
 	public class PlayerDirection : MonoBehaviour {
