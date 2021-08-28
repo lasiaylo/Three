@@ -227,8 +227,8 @@ MonoBehaviour:
   traits:
     arcThreshold: 0
     arcMult: 0
-    upGravity: 0
-    downGravity: 0
+    upGravity: 20
+    downGravity: 30
     maxFallSpeed: 10
 --- !u!114 &4913113
 MonoBehaviour:
@@ -595,9 +595,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb93a5c512349ec944416511e129a31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  x: 0
+  y: 1
+  z: 0
   direction: {fileID: 11400000, guid: ec1631dd808fbca46ad2bd3453fc7919, type: 2}
-  turnSpeed: 30
-  vec: {x: 0, y: 0, z: 0}
+  turnSpeed: 20
 --- !u!114 &153198149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2475,7 +2477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   val:
-    speed: 0
+    speed: 10
     canJump: 0
 --- !u!114 &2057129673
 MonoBehaviour:

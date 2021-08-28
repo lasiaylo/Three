@@ -11,14 +11,7 @@ public class PathFollow : MovementMod {
 	private const float DAMP = 1.8f;
 
 	public CinemachinePathBase Path {
-		set {
-			_math.Path = value;
-			if (value is null) {
-				enabled = false;
-				return;
-			}
-			enabled = true;
-		}
+		set => _math.Path = value;
 	}
 
 	public void Awake() {
@@ -26,6 +19,9 @@ public class PathFollow : MovementMod {
 	}
 	
 	public override Vector3 Modify(Vector3 val) {
+		if (_math.Path is null) {
+			return val;
+		}
 		// val.x refers to left/right direction.
 		// TODO - Use ground position instead of transform position;
 		Vector3 position = transform.position;

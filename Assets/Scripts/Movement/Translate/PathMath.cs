@@ -22,6 +22,7 @@ namespace Movement.Translate {
 					_closestPoint = 0;
 				}
 			}
+			get => _path;
 		}
 
 		public PathMath([CanBeNull] CinemachinePathBase path = null) {
