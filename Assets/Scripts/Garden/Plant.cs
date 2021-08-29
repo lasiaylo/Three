@@ -1,5 +1,6 @@
 using Garden.Factors;
 using Interactions;
+using UnityEngine;
 
 namespace Garden {
 	public class Plant : InteractBehaviour {
@@ -16,7 +17,7 @@ namespace Garden {
 			// Change plant's status based off of health 
 		}
 
-		public override void Interact() { }
+		public override void Interact(Component interactor) { }
 
 		public override void Focus() { }
 

@@ -14,7 +14,7 @@ namespace Garden {
 		public Plant plant;
 		private AsyncOperationHandle<GameObject> _plantHandle; // Use to deroot later 
 
-		public override void Interact() {
+		public override void Interact(Component interactor) {
 			if (plant is null) {
 				AD.Instantiate(Path.PLANT_ADDRESS, PlantType.TOMATO.ToString(),transform, Sow);
 			}

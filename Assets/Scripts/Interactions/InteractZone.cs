@@ -7,23 +7,6 @@ namespace Interactions {
 		public InteractZoneManager zoneManager;
 		public bool isTriggered;
 
-		private bool IsTriggered {
-			set {
-				if (value == isTriggered) return;
-				isTriggered = value;
-				if (isTriggered) {
-					zoneManager.OnZoneTriggered();
-				}
-				else {
-					zoneManager.OnZoneUntriggered();
-				}
-			}
-		}
-
-		public void OnDisable() {
-			IsTriggered = false;
-		}
-
 		public void OnTriggerEnter(Collider other) {
 			SetTrigger(other, true);
 		}
@@ -37,8 +20,17 @@ namespace Interactions {
 		}
 
 		private void SetTrigger(Component other, bool trigger) {
-			if (!other.CompareTag("Player") || !enabled) return;
-			IsTriggered = trigger;
+			if (!other.CompareTag("Player") || !enabled || trigger == isTriggered) return; // Assumes only one thing will be interacting
+			isTriggered = trigger;
+			if (isTriggered) {
+				zoneManager.OnZoneTriggered(other);
+			} else {
+				zoneManager.OnZoneUntriggered();
+			}
+		}
+		
+		public void OnDisable() {
+			isTriggered = false;
 		}
 
 		public void Reset() {

@@ -6,38 +6,44 @@ using Util.Patterns;
 namespace Interactions {
 	public class InteractionManager : Singleton<InteractionManager> {
 		[SerializeField] private HashSet<InteractBehaviour> targets = new HashSet<InteractBehaviour>();
+		[SerializeField] private Component interactor; 
 
 		public HashSet<InteractBehaviour> Targets {
 			private get => targets;
 			set {
 				if (value is null) value = new HashSet<InteractBehaviour>();
 				if (value.SetEquals(targets)) return;
-				UnfocusAll(targets);
+				UnfocusAll();
 				targets = value;
-				FocusAll(targets);
+				FocusAll();
 			}
 		}
 
+		public Component Interactor {
+			 get => interactor;
+			 set => value = interactor;
+		}
+		
 		public void Interact(InputAction.CallbackContext context) {
 			if (context.started) {
-				InteractAll(targets);
+				InteractAll();
 			}
 		}
 		
-		private static void InteractAll(IEnumerable<InteractBehaviour> behaviours) {
-			foreach (InteractBehaviour behaviour in behaviours) {
-				behaviour.Interact();
+		private  void InteractAll() {
+			foreach (InteractBehaviour behaviour in targets) {
+				behaviour.Interact(Interactor);
 			}
 		}
 
-		private static void UnfocusAll(IEnumerable<InteractBehaviour> behaviours) {
-			foreach (InteractBehaviour behaviour in behaviours) {
+		private  void UnfocusAll() {
+			foreach (InteractBehaviour behaviour in targets) {
 				behaviour.Unfocus();
 			}
 		}
 		
-		private static void FocusAll(IEnumerable<InteractBehaviour> behaviours) {
-			foreach (InteractBehaviour behaviour in behaviours) {
+		private  void FocusAll() {
+			foreach (InteractBehaviour behaviour in targets) {
 				behaviour.Focus();
 			}
 		}

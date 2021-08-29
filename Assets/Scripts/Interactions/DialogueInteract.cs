@@ -1,3 +1,4 @@
+using UnityEngine;
 using Util.Utils;
 
 namespace Interactions {
@@ -9,7 +10,7 @@ namespace Interactions {
 			_characterNameString = "1-" + characterName.ToString();
 		}
 
-		public override void Interact() {
+		public override void Interact(Component interactor) {
 			YarnManager.Instance.StartDialogue(_characterNameString);
 		}
 

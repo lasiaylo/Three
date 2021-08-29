@@ -28,8 +28,9 @@ namespace Interactions {
 			OnCameraRotate();
 		}
 
-		public void OnZoneTriggered() {
+		public void OnZoneTriggered(Component interactor) {
 				InteractionManager.Instance.Targets = _interactBehavioursSet;
+				InteractionManager.Instance.Interactor = interactor;
 		}
 
 		public void OnZoneUntriggered() {
@@ -42,6 +43,7 @@ namespace Interactions {
 			
 		}
 
+		// ReSharper disable once MemberCanBePrivate.Global - Used in events
 		public void OnCameraRotate() {
 			bool cameraIsInFront = GetCameraIsInFront();
 			
