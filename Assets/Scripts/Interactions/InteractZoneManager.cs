@@ -44,7 +44,6 @@ namespace Interactions {
 
 		public void OnCameraRotate() {
 			bool cameraIsInFront = GetCameraIsInFront();
-			Debug.Log(cameraIsInFront);
 			
 			foreach (InteractZone zone in _zoneSet) {
 				zone.enabled = cameraIsInFront;

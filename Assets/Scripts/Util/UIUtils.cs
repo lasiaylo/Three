@@ -3,6 +3,21 @@ using UnityEngine.UI;
 
 namespace Util {
 	public static class UIUtils {
+
+		public static Vector2 WorldToPosition(
+			Camera camera, Canvas canvas, CanvasScaler canvasScaler, RectTransform bubble, Vector3 worldPos
+		) {
+			Camera canvasCamera = camera;
+			RectTransformUtility.ScreenPointToLocalPointInRectangle(
+				bubble.parent
+					.GetComponent<RectTransform>(), // calculate local point inside parent... NOT inside the dialogue bubble itself
+				camera.WorldToScreenPoint(worldPos),
+				camera,
+				out Vector2 screenPos
+			);
+			return screenPos;
+		}
+		
 		/// <summary>Calculates where to put dialogue bubble based on worldPosition and any desired screen margins. 
 		/// Ensure "constrainToViewportMargin" is between 0.0f-1.0f (% of screen) to constrain to screen, or value of -1 lets bubble go off-screen.</summary>
 		public static Vector2 WorldToAnchoredPosition(Camera camera, Canvas canvas, CanvasScaler canvasScaler,

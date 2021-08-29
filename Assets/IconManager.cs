@@ -26,13 +26,12 @@ public class IconManager : Singleton<IconManager> {
 	// Update is called once per frame
 	public void Update() {
 		if (!(_iconAnchor is  null) && dialogueBubbleRect.gameObject.activeInHierarchy) {
-			dialogueBubbleRect.anchoredPosition = UIUtils.WorldToAnchoredPosition(
+			dialogueBubbleRect.anchoredPosition = UIUtils.WorldToPosition(
 				worldCamera,
 				canvas,
 				canvasScaler,
 				dialogueBubbleRect,
-				_iconAnchor.positionWithOffset,
-				bubbleMargin
+				_iconAnchor.positionWithOffset
 			);
 		}
 	}
