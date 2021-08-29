@@ -45,6 +45,15 @@ namespace Util.Extensions {
 
 		#endregion
 
+		# region Velocity towards
+
+		public static Vector3 VelocityTowards(this Vector3 val, Vector3 target, float speed) {
+			Vector3 forward = target - val;
+			return Vector3.ClampMagnitude(forward.normalized * speed, forward.magnitude);
+		}
+
+		#endregion
+
 		#region Get Plane
 
 		public static Vector2 GetXy(this Vector3 val) {
@@ -66,7 +75,7 @@ namespace Util.Extensions {
 		public static bool IsCameraLeftOf(this Vector3 val, Vector3 target, Camera cam) {
 			return cam.WorldToScreenPoint(val).x < cam.WorldToScreenPoint(target).x;
 		}
-	
+
 		public static bool IsCameraRightOf(this Vector3 val, Vector3 target, Camera cam) {
 			return target.IsCameraLeftOf(val, cam);
 		}

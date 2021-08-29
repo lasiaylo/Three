@@ -19,5 +19,4 @@ public abstract class RayCaster<T> : MonoBehaviour where T : Component {
 	public void Cast() {
 		OnCast(RayCastUtil.CastNonAlloc<T>(_ray, CastTag, distance, color));
 	}
-	
 }

@@ -7,13 +7,20 @@ using Util.Utils;
 
 public class MoveInteract : InteractBehaviour {
 	[SerializeField] private PathMath math;
+	public Vector3 destination = Vector3.zero;
 
 	public void Awake() {
 		math = new PathMath();
 	}
 
 	public override void Interact(Component interactor) {
-		throw new System.NotImplementedException();
+		Debug.Log(interactor);
+		if (interactor is null) {
+			return;
+		}
+
+		MoveToLocation move = interactor.GetComponentInChildren<MoveToLocation>();
+		move?.SetDestination(destination);
 	}
 
 	public override void Focus() { }

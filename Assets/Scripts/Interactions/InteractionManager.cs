@@ -20,8 +20,8 @@ namespace Interactions {
 		}
 
 		public Component Interactor {
-			 get => interactor;
-			 set => value = interactor;
+			 private get => interactor;
+			 set => interactor = value;
 		}
 		
 		public void Interact(InputAction.CallbackContext context) {
