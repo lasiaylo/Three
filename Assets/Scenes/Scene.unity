@@ -166,13 +166,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4913106}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e4f03deeb73af74c85e857974ae30af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {x: 0, y: 0, z: 0}
-  speed: 1
+  target: {x: 200, y: 0, z: 0}
+  speed: 20
 --- !u!114 &4913109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +250,6 @@ MonoBehaviour:
   - {fileID: 4913110}
   postMods:
   - {fileID: 4913109}
-  - {fileID: 4913108}
   val: {x: 0, y: 0, z: 0}
   postVal: {fileID: 11400000, guid: ec1631dd808fbca46ad2bd3453fc7919, type: 2}
 --- !u!1 &45373198
@@ -880,7 +879,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 1
+  ShowDebug: 0
   pathFollow: {fileID: 4913109}
+  offSet: {x: 0, y: -1, z: 0}
 --- !u!1 &523219996
 GameObject:
   m_ObjectHideFlags: 0

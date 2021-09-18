@@ -4,19 +4,25 @@ using Util.Utils;
 
 public abstract class RayCaster<T> : MonoBehaviour where T : Component {
 	public float distance = 1;
-	protected Color? color = null;
-	protected Enum CastTag = null;
+	public bool ShowDebug = false;
 	private Ray _ray;
 
-	public abstract Vector3 Direction { get; set; }
+	protected abstract Vector3 Direction { get; set; }
+	
+	protected abstract Enum CastTag { get; }
+	
+	protected virtual Color? DebugColor {
+		get => Color.green;
+	}
+
+	protected virtual Vector3 Offset {
+		get => Vector3.zero;
+	}
 
 	public abstract void OnCast(T hit);
 
-	public void Start() {
-		_ray = new Ray(transform.position, Direction);
-	}
-
 	public void Cast() {
-		OnCast(RayCastUtil.CastNonAlloc<T>(_ray, CastTag, distance, color));
+		_ray = new Ray(transform.position + Offset, Direction);
+		OnCast(RayCastUtil.CastNonAlloc<T>(_ray, CastTag, distance, ShowDebug ? DebugColor : null));
 	}
 }

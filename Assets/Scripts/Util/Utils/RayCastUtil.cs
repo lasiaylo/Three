@@ -51,20 +51,10 @@ namespace Util.Utils {
 			if (CastColliderNonAlloc(ray, out Collider collider, distance, debugColor))
 				if (collider.TryGetOnlyComponent(out Tags tags) && HasTag(tags, tag))
 					return collider.GetOnlyComponent<T>();
+			Debug.Log("WHY IS IT GETTING HERE");
 			return default;
 		}
 
-		public static T CastNonAlloc<T>(
-			Vector3 pos, 
-			Vector3 dir,
-			Enum tag = null,
-			float distance = Mathf.Infinity, 
-			Color? debugColor = null
-		) where T: Component {
-			Ray ray = new Ray(pos, dir);
-			return CastNonAlloc<T>(ray, tag, distance, debugColor);
-		}
-		
 		public static T CastDownNonAlloc<T>(
 			Vector3 pos, 
 			Enum tag = null,
@@ -82,9 +72,21 @@ namespace Util.Utils {
 		) where T: Component {
 			return CastNonAlloc<T>(pos,Vector3.forward, tag, distance, debugColor);
 		}
+		
+		private static T CastNonAlloc<T>(
+			Vector3 pos, 
+			Vector3 dir,
+			Enum tag = null,
+			float distance = Mathf.Infinity, 
+			Color? debugColor = null
+		) where T: Component {
+			Ray ray = new Ray(pos, dir);
+			return CastNonAlloc<T>(ray, tag, distance, debugColor);
+		}
 
 		#endregion
 
+		#region Cast Collider (CONSIDER USING NON ALLOC INSTEAD)
 		public static T Cast<T>(
 			Ray ray,
 			Enum tag = null,
@@ -108,6 +110,8 @@ namespace Util.Utils {
 			Ray ray = camera.ScreenPointToRay(screenPos);
 			return Cast<T>(ray, tag, distance, debugColor);
 		}
+		
+		#endregion
 
 		private static bool HasTag(Tags tags, Enum tagValue) {
 			if (tagValue == null) return true;
