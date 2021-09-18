@@ -29,8 +29,6 @@ namespace Interactions {
 		}
 
 		public void OnZoneTriggered(Component interactor) {
-			Debug.Log("Zone triggered");
-			Debug.Log(interactor);
 			InteractionManager.Instance.Interactor = interactor;
 			InteractionManager.Instance.Targets = _interactBehavioursSet;
 		}

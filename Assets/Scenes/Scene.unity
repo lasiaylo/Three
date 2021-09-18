@@ -3800,6 +3800,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7533800183688815791, guid: 87209a6c094804960a26819537400fbd, type: 3}
+      propertyPath: messageBubbleOffset.y
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8338530110097461460, guid: 87209a6c094804960a26819537400fbd, type: 3}
       propertyPath: m_RootOrder
       value: 0
