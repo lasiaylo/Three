@@ -22,7 +22,10 @@ namespace Movement.Translate {
 		protected Vector3 Target {
 			get {
 				float maxSpeed = _trait.val.maxSpeed;
-				return Vector3.Scale(inputDirection.Val, new Vector3(maxSpeed, maxSpeed, maxSpeed));
+				return Vector3.Scale(
+					new Vector3(inputDirection.Val.x, 0, inputDirection.Val.y),
+					new Vector3(maxSpeed, maxSpeed, maxSpeed)
+				);
 			}
 		}
 
