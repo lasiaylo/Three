@@ -239,6 +239,30 @@ MonoBehaviour:
   - parentTag: General
     name: HAS_PATH
     enabled: 1
+--- !u!1 &62345189 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 288934949041401106, guid: 8b04a0cfbdb8a2d45bc91065268cf630, type: 3}
+  m_PrefabInstance: {fileID: 288934948710751104}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &62345190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62345189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93c79d0a3b8534fdb9b4b48849962abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags:
+  - parentTag: General
+    name: HAS_PATH
+    enabled: 1
+  - parentTag: FloorMaterial
+    name: CARPET
+    enabled: 1
 --- !u!1 &68132414
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,6 +815,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 4e4cec05-45e7-469b-9966-17d1d40b6d34
     m_ActionName: Menu/Cancel[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2e25c3ad-85df-41ec-bb3a-ce0bed3973c0
+    m_ActionName: Movement/Push[/Keyboard/x]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement
@@ -824,6 +864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: f9623253e0b3a45d7bbda42896d9a013, type: 2}
   jumpPhase: {fileID: 11400000, guid: 2e9509ff2d2604eaca1b14601cc52e34, type: 2}
+  isPush: {fileID: 11400000, guid: c37f14fda271a53448fc970c552baccd, type: 2}
   _jumpBuffer:
     timer:
       duration: 0
@@ -998,6 +1039,44 @@ MonoBehaviour:
   transformEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &2001424761 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 288934948714540114, guid: 8b04a0cfbdb8a2d45bc91065268cf630, type: 3}
+  m_PrefabInstance: {fileID: 288934948710751104}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2001424767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001424761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a08f278803218d4aa71c974f021aad5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  friction: 0
+  veerInfluence: 0
+  inputDirection: {fileID: 0}
+  push: {fileID: 0}
+--- !u!1 &2054580014 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 288934950227727686, guid: 8b04a0cfbdb8a2d45bc91065268cf630, type: 3}
+  m_PrefabInstance: {fileID: 288934948710751104}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2054580020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054580014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71975af960af0543b470ddc43776975, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2143673292
 GameObject:
   m_ObjectHideFlags: 0
