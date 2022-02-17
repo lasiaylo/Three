@@ -41,6 +41,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Push"",
+                    ""type"": ""Button"",
+                    ""id"": ""2e25c3ad-85df-41ec-bb3a-ce0bed3973c0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -48,6 +56,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""74857e8c-c223-49bd-87b2-5e837539d8a4"",
                     ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6dde9867-c87c-40f5-8c5b-953b72407290"",
+                    ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -173,6 +192,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""33a53bd6-4d71-4f44-84db-86746a2bf3ca"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Push"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -350,6 +380,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
         m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
         m_Movement_Interact = m_Movement.FindAction("Interact", throwIfNotFound: true);
+        m_Movement_Push = m_Movement.FindAction("Push", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Move1 = m_Menu.FindAction("Move1", throwIfNotFound: true);
@@ -407,6 +438,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Movement_Move;
     private readonly InputAction m_Movement_Jump;
     private readonly InputAction m_Movement_Interact;
+    private readonly InputAction m_Movement_Push;
     public struct MovementActions
     {
         private @PlayerInput m_Wrapper;
@@ -414,6 +446,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Movement_Move;
         public InputAction @Jump => m_Wrapper.m_Movement_Jump;
         public InputAction @Interact => m_Wrapper.m_Movement_Interact;
+        public InputAction @Push => m_Wrapper.m_Movement_Push;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -432,6 +465,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Interact.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnInteract;
+                @Push.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnPush;
+                @Push.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnPush;
+                @Push.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnPush;
             }
             m_Wrapper.m_MovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -445,6 +481,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Push.started += instance.OnPush;
+                @Push.performed += instance.OnPush;
+                @Push.canceled += instance.OnPush;
             }
         }
     }
@@ -503,6 +542,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnPush(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

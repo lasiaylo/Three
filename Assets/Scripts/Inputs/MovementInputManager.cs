@@ -9,6 +9,7 @@ namespace Inputs {
 	public class MovementInputManager : MonoBehaviour {
 		[SerializeField] private DefaultNormalVector2 input = default;
 		[SerializeField] private DefaultPhase jumpPhase = default;
+		[SerializeField] private DefaultBool isPush = default;
 		[SerializeField] private Buffer<Phase> _jumpBuffer;
 		private PlayerInput _playerInput;
 
@@ -39,6 +40,17 @@ namespace Inputs {
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();
+			}
+		}
+
+		public void OnPush(InputAction.CallbackContext context) {
+			switch (context.phase) {
+				case InputActionPhase.Started:
+					isPush.Val = true;
+					break;
+				default:
+					isPush.Val = false;
+					break;
 			}
 		}
 	}

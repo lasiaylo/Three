@@ -28,6 +28,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Push",
+                    "type": "Button",
+                    "id": "2e25c3ad-85df-41ec-bb3a-ce0bed3973c0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -35,6 +43,17 @@
                     "name": "",
                     "id": "74857e8c-c223-49bd-87b2-5e837539d8a4",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6dde9867-c87c-40f5-8c5b-953b72407290",
+                    "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -160,6 +179,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "33a53bd6-4d71-4f44-84db-86746a2bf3ca",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Push",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
