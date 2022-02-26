@@ -6,6 +6,8 @@ namespace Util.Utils {
 	public static class RayCastUtil {
 		private static RaycastHit[] _hits = new RaycastHit[1];
 		
+		
+		
 		# region Cast Collider
 
 		public static bool CastCollider(
@@ -51,7 +53,6 @@ namespace Util.Utils {
 			if (CastColliderNonAlloc(ray, out Collider collider, distance, debugColor))
 				if (collider.TryGetOnlyComponent(out Tags tags) && HasTag(tags, tag))
 					return collider.GetOnlyComponent<T>();
-			Debug.Log("WHY IS IT GETTING HERE");
 			return default;
 		}
 

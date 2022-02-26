@@ -31,15 +31,15 @@ namespace Util.Extensions {
 
 		#region Move Towards Plane
 
-		public static Vector3 MoveTowardsXy(this Vector3 val, Vector3 target, float maxDistanceDelta) {
+		public static Vector3 MoveTowardsXY(this Vector3 val, Vector3 target, float maxDistanceDelta) {
 			return Vector3.MoveTowards(val, new Vector3(target.x, target.y, val.z), maxDistanceDelta);
 		}
 
-		public static Vector3 MoveTowardsXz(this Vector3 val, Vector3 target, float maxDistanceDelta) {
+		public static Vector3 MoveTowardsXZ(this Vector3 val, Vector3 target, float maxDistanceDelta) {
 			return Vector3.MoveTowards(val, new Vector3(target.x, val.y, target.z), maxDistanceDelta);
 		}
 
-		public static Vector3 MoveTowardsYz(this Vector3 val, Vector3 target, float maxDistanceDelta) {
+		public static Vector3 MoveTowardsYZ(this Vector3 val, Vector3 target, float maxDistanceDelta) {
 			return Vector3.MoveTowards(val, new Vector3(val.x, target.y, target.y), maxDistanceDelta);
 		}
 
@@ -56,18 +56,34 @@ namespace Util.Extensions {
 
 		#region Get Plane
 
-		public static Vector2 GetXy(this Vector3 val) {
+		public static Vector2 GetXY(this Vector3 val) {
 			return new Vector2(val.x, val.y);
 		}
 
-		public static Vector2 GetXz(this Vector3 val) {
+		public static Vector2 GetXZ(this Vector3 val) {
 			return new Vector2(val.x, val.z);
 		}
 
-		public static Vector2 GetYz(this Vector3 val) {
+		public static Vector2 GetYZ(this Vector3 val) {
 			return new Vector2(val.y, val.z);
 		}
 
+		#endregion
+		
+		#region Solo axis
+
+		public static Vector3 GetSoloX(this Vector3 val) {
+			return new Vector3(val.x, 0, 0);
+		}
+
+		public static Vector3 GetSoloY(this Vector3 val) {
+			return new Vector3(0, val.y, 0);
+		}
+		
+		public static Vector3 GetSoloZ(this Vector3 val) {
+			return new Vector3(0, 0, val.z);
+		}
+	
 		#endregion
 
 		#region Screen Position

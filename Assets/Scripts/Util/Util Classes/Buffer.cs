@@ -14,7 +14,7 @@ namespace Util.Util_Classes {
 		private T _val;
 
 		public Buffer() {
-			timer = new Timer(0, Clear);
+			timer = new Timer(1, null, Clear);
 		}
 
 		public T SetOrConsume(T val) {

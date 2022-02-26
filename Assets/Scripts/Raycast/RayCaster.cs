@@ -4,7 +4,7 @@ using Util.Utils;
 
 public abstract class RayCaster<T> : MonoBehaviour where T : Component {
 	public float distance = 1;
-	public bool ShowDebug = false;
+	public bool showDebug = false;
 	private Ray _ray;
 
 	protected abstract Vector3 Direction { get; set; }
@@ -23,6 +23,6 @@ public abstract class RayCaster<T> : MonoBehaviour where T : Component {
 
 	public void Cast() {
 		_ray = new Ray(transform.position + Offset, Direction);
-		OnCast(RayCastUtil.CastNonAlloc<T>(_ray, CastTag, distance, ShowDebug ? DebugColor : null));
+		OnCast(RayCastUtil.CastNonAlloc<T>(_ray, CastTag, distance, showDebug ? DebugColor : null));
 	}
 }

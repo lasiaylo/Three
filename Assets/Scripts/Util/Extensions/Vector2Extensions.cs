@@ -39,4 +39,54 @@ public static class Vector2Extensions {
 	}
 
 	#endregion
+	
+	#region Solo axis
+
+	public static Vector2 GetSoloX(this Vector2 val) {
+		return new Vector2(val.x, 0);
+	}
+
+	public static Vector2 GetSoloY(this Vector2 val) {
+		return new Vector2(0, val.y);
+	}
+	
+	#endregion
+
+	#region Rotations
+
+	public static Vector2 GetReverse(this Vector2 val) {
+		return -val;
+	}
+
+	public static Vector2 GetNormalClockwise(this Vector2 val)
+	{
+		return new Vector2(val.y, -val.x);
+	}
+
+	public static Vector2 GetNormalCounterClockwise(this Vector2 val)
+	{
+		return new Vector2(-val.y, val.x);
+	}
+	
+	public static Vector2 Rotate(this Vector2 v, float degrees) {
+		float sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
+		float cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
+         
+		float tx = v.x;
+		float ty = v.y;
+		v.x = (cos * tx) - (sin * ty);
+		v.y = (sin * tx) + (cos * ty);
+		return v;
+	}
+	
+
+	#endregion
+
+	#region Comparisons
+
+	public static bool IsAgainst(this Vector2 val, Vector2 compare) {
+		return Vector2.Dot(val, compare) < 0;
+	}
+
+	#endregion
 }

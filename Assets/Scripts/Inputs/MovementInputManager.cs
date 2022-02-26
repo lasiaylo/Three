@@ -21,8 +21,7 @@ namespace Inputs {
 			if (_jumpBuffer.IsCleared()) {
 				// _jumpBuffer.
 				Debug.Log("Things fall apart");
-			}
-			else {
+			} else {
 				jumpPhase.Val = _jumpBuffer.Consume();
 			}
 
@@ -46,6 +45,7 @@ namespace Inputs {
 		public void OnPush(InputAction.CallbackContext context) {
 			switch (context.phase) {
 				case InputActionPhase.Started:
+				case InputActionPhase.Performed:
 					isPush.Val = true;
 					break;
 				default:

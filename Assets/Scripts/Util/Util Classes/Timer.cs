@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Util.Util_Classes {
@@ -7,28 +8,37 @@ namespace Util.Util_Classes {
 	public class Timer {
 		public delegate void OnEnd();
 
-		[SerializeField] private float duration;
-		private OnEnd _onEnd;
-		private float _remaining;
-		public Task Task;
+		public delegate void OnTick(float timeRemaining);
 
-		public Timer(float duration, OnEnd onEnd) {
+		[SerializeField] private float duration;
+		[ReadOnly] private float _remaining;
+		public Task Task;
+		private OnEnd _onEnd;
+		private OnTick _onTick;
+
+		public float Remaining {
+			get => _remaining;
+		}
+
+		public Timer(float duration, [CanBeNull] OnTick onTick, [CanBeNull] OnEnd onEnd) {
 			this.duration = _remaining = duration;
+			_onTick = onTick;
 			_onEnd = onEnd;
 		}
 
 		public void Start() {
-			Task = Task ?? Task.Get(Tick());
+			Task = Task.Get(Tick());
 			Task.Unpause();
 		}
 
 		private IEnumerator Tick() {
 			while (!IsEnd()) {
 				_remaining = Mathf.Clamp(_remaining - Time.deltaTime, 0.0f, duration);
-				yield break;
+				_onTick?.Invoke(_remaining);
+				yield return null;
 			}
 
-			_onEnd();
+			End();
 		}
 
 		public void Reset() {
@@ -37,10 +47,15 @@ namespace Util.Util_Classes {
 
 		public void End() {
 			_remaining = 0f;
+			_onEnd?.Invoke();
+		}
+
+		public bool IsRunning() {
+			return Task is { Running: true };
 		}
 
 		public bool IsEnd() {
-			return _remaining <= 0f;
+			return _remaining <= 0f || Task is null;
 		}
 	}
 }

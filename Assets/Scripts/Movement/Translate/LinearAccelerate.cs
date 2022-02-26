@@ -34,7 +34,7 @@ namespace Movement.Translate {
 		}
 
 		protected virtual bool ShouldAccelerate(Vector3 val) {
-			return !inputDirection.Val.IsZero() && Vector3.Angle(val.GetXz(), inputDirection.Val) <= 90;
+			return !inputDirection.Val.IsZero() && Vector3.Angle(val.GetXZ(), inputDirection.Val) <= 90;
 		}
 
 		protected float GetSpeed(Vector3 val) {
