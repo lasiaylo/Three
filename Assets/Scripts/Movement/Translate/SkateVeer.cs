@@ -13,9 +13,11 @@ namespace Movement.Translate {
 		[SerializeField] private DefaultQuaternion playerOrientation;
 		[SerializeField] private DefaultNormalVector3 wheelDirection;
 		[SerializeField] private float veerStrength;
+		[SerializeField] private AnimationCurve veerCurve;
 		private Vector3 _wheelDirection;
 
 		// TODO: Account for turning in air. 
+		// TODO: Veer Ramp
 
 		public override Vector3 Modify(Vector3 val) {
 			_wheelDirection = GetWheelDirection();
